@@ -1,0 +1,721 @@
+/* ==========================================================================
+   AURA — Private Motorsport Hospitality
+   layout.css · Struttura: header, nav, hero, sezioni, galleria, footer,
+   pagine interne (team, contatti), sistema reveal.
+   --------------------------------------------------------------------------
+   Breakpoint (em, non px: seguono le preferenze utente):
+     sm  40em  (~640px)  · form 2 col, team 2 col
+     md  48em  (~768px)  · hero 16/9
+     lg  56em  (~900px)  · nav desktop, scompare hamburger
+     xl  64em  (~1024px) · split, pillars 3 col, galleria masonry
+   Mobile-first: il base È il telefono. Il desktop è un arricchimento.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0 · REVEAL — animazioni d'ingresso. Regola d'oro: senza JS tutto
+       resta VISIBLE. Solo html.js lo nasconde in attesa dell'observer.
+   -------------------------------------------------------------------------- */
+html.js .reveal {
+  opacity: 0;
+  translate: 0 1.75rem;
+  transition: opacity .7s var(--ease-out),
+              translate .7s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0s);
+}
+html.js .reveal.is-inview { opacity: 1; translate: 0 0; }
+html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza */
+
+.reveal--d1 { --reveal-delay: .10s; }             /* ritardi a cascata */
+.reveal--d2 { --reveal-delay: .20s; }
+.reveal--d3 { --reveal-delay: .30s; }
+
+/* --------------------------------------------------------------------------
+   1 · HEADER — fisso, trasparente in cima; "glass" dopo lo scroll.
+       Il bordo nasce TRASPARENTE e si colora: zero salto di layout (CLS 0).
+   -------------------------------------------------------------------------- */
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--z-header);
+  border-block-end: 1px solid transparent;       /* occupa lo spazio da subito */
+  transition: background var(--t-med) var(--ease-out),
+              border-color var(--t-med) var(--ease-out);
+}
+.header.is-scrolled {
+  background: rgba(237, 235, 230, .90);          /* #EDEBE6 al 90%: letterale,
+                                                   prevedibile su ogni browser */
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-block-end-color: var(--crema-bordo);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-s);
+  min-height: var(--header-h);
+}
+
+/* CTA desktop: compatta, non ruba spazio */
+.header .btn { min-height: 2.5rem; padding: .5em 1.2em; font-size: var(--fs-micro); }
+.header__cta { display: none; }
+
+/* --------------------------------------------------------------------------
+   2 · NAV — un solo markup, due vite:
+       mobile  = overlay a tendina verde profondo (qui sotto)
+       desktop = riga di link (sezione 2b)
+   -------------------------------------------------------------------------- */
+.nav-toggle {
+  margin-inline-start: auto;                     /* spinge a destra al posto della nav */
+  display: inline-grid;
+  justify-items: center;
+  gap: .4em;
+  padding: .9em;                                 /* tap target generoso */
+}
+.nav-toggle span {
+  width: 1.6em;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--marrone);
+  transition: transform var(--t-med) var(--ease-out),
+              background var(--t-med) var(--ease-out);
+}
+
+.site-nav {
+  position: fixed;
+  inset: 0;
+  z-index: -1;                                   /* sotto l'header: il logo resta visibile */
+  display: grid;
+  align-content: center;
+  padding-block: var(--header-h) var(--sp-l) var(--sp-xl);
+  padding-inline: var(--gutter);
+  background: rgba(22, 64, 55, .98);             /* #164037: si lega alle sezioni scure */
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  visibility: hidden;
+  opacity: 0;
+  translate: 0 3%;
+  transition: opacity var(--t-slow) var(--ease-out),
+              translate var(--t-slow) var(--ease-out),
+              visibility var(--t-slow);
+}
+.site-nav.is-open { visibility: visible; opacity: 1; translate: 0 0; }
+
+.site-nav__list { display: grid; gap: var(--sp-m); }
+.site-nav__link {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 7vw, 2.6rem);
+  line-height: 1.1;
+  color: var(--crema);
+  text-decoration: none;
+  opacity: 0;
+  translate: 0 1.25rem;
+  transition: opacity var(--t-med) var(--ease-out),
+              translate var(--t-med) var(--ease-out),
+              color var(--t-fast);
+}
+.site-nav__link:hover,
+.site-nav__link:focus-visible { color: var(--oro); }
+.site-nav__link:focus-visible { outline-color: var(--oro); }
+
+/* Entrata a cascata SOLO all'apertura: alla chiusura niente ritardi → snap */
+.site-nav.is-open .site-nav__link { opacity: 1; translate: 0 0; }
+.site-nav.is-open .site-nav__list li:nth-child(1) a { transition-delay: .06s; }
+.site-nav.is-open .site-nav__list li:nth-child(2) a { transition-delay: .12s; }
+.site-nav.is-open .site-nav__list li:nth-child(3) a { transition-delay: .18s; }
+.site-nav.is-open .site-nav__list li:nth-child(4) a { transition-delay: .24s; }
+.site-nav.is-open .site-nav__list li:nth-child(5) a { transition-delay: .30s; }
+
+.site-nav__cta { justify-self: start; margin-block-start: var(--sp-m); }
+
+/* Menu aperto: la barra si "veste" di crema su fondo verde */
+body.menu-open { overflow: hidden; }             /* blocco lo scroll della pagina */
+body.menu-open .logo,
+body.menu-open .logo b { color: var(--crema); }
+body.menu-open .nav-toggle span { background: var(--crema); }
+body.menu-open .header { background: transparent; border-block-end-color: transparent; }
+/* ^ quest'ordine conta: vince sul .is-scrolled a parità di specificità */
+
+/* Hamburger → X */
+.nav-toggle.is-open span:nth-child(1) { transform: translateY(.26em) rotate(45deg); }
+.nav-toggle.is-open span:nth-child(2) { transform: translateY(-.26em) rotate(-45deg); }
+
+/* --- 2b · NAV DESKTOP (≥56em): l'overlay diventa una riga quieta --------- */
+@media (min-width: 56em) {
+  .nav-toggle,
+  .site-nav__cta { display: none; }
+  .header__cta { display: inline-flex; }
+
+  .site-nav {
+    position: static;
+    z-index: auto;
+    display: block;
+    margin-inline-start: auto;                  /* logo a sinistra, nav a destra */
+    padding: 0;
+    background: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    visibility: visible;
+    opacity: 1;
+    translate: none;
+  }
+  .site-nav__list { display: flex; flex-wrap: wrap; gap: clamp(1rem, 2.5vw, 2.25rem); }
+  .site-nav__link {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--fs-small);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--marrone-70);
+    opacity: 1;
+    translate: none;
+    transition: color var(--t-fast);
+  }
+  /* Sottolineatura oro che cresce da sinistra */
+  .site-nav__link { position: relative; }
+  .site-nav__link::after {
+    content: "";
+    position: absolute;
+    inset-block-end: -.4em;
+    inset-inline: 0;
+    height: 1px;
+    background: var(--oro);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--t-med) var(--ease-out);
+  }
+  .site-nav__link:hover,
+  .site-nav__link:focus-visible { color: var(--marrone); }
+  .site-nav__link:hover::after,
+  .site-nav__link:focus-visible::after { transform: scaleX(1); }
+  .site-nav__link[aria-current="page"] { color: var(--marrone); }
+  .site-nav__link[aria-current="page"]::after { transform: scaleX(1); }
+}
+
+/* --------------------------------------------------------------------------
+   3 · HERO — tutta la prima schermata. claim gigante in basso a sinistra,
+       foto dietro, velo verde per la leggibilità. 100svh = altezza reale.
+   -------------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-height: 100vh;                             /* fallback: browser vecchi */
+  min-height: 100svh;                            /* quella giusta su mobile */
+  overflow: hidden;
+}
+.hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Velo: intenso in basso (dove sta il testo), quasi nulla in alto */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+              rgba(22, 64, 55, .82),
+              rgba(22, 64, 55, .38) 45%,
+              rgba(22, 64, 55, .05));
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--sp-s);
+  padding-block-end: clamp(5.5rem, 14vh, 9rem);
+}
+.hero .eyebrow { color: var(--oro); }
+.hero__title {
+  font-size: var(--fs-display);
+  line-height: 1.02;
+  color: var(--crema);
+  max-width: 16ch;                               /* il claim spezza dove voglio io */
+  text-wrap: balance;
+}
+.hero__lead {
+  font-size: var(--fs-body-l);
+  line-height: 1.5;
+  color: rgba(237, 235, 230, .88);
+  max-width: 46ch;
+}
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-xs) var(--sp-s);
+  margin-block-start: var(--sp-2xs);
+}
+
+/* Invito allo scroll, in basso a destra */
+.hero__cue {
+  position: absolute;
+  z-index: 1;
+  inset-block-end: clamp(1.25rem, 4vh, 2.5rem);
+  inset-inline-end: var(--gutter);
+  display: grid;
+  justify-items: center;
+  gap: .5rem;
+  color: var(--crema);
+}
+.hero__cue-txt {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  writing-mode: vertical-rl;                    /* verticale: gesto editoriale */
+}
+.hero__cue-line {
+  width: 1px;
+  height: clamp(2.5rem, 7vh, 4.5rem);
+  background: linear-gradient(to bottom, var(--crema), transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__cue-line { animation: cuePulse 2.6s var(--ease-inout) infinite; }
+  @keyframes cuePulse { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
+}
+
+/* Respiro d'ingresso della foto: once, poi basta (rispetto la batteria) */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__img { animation: heroIn 1.4s var(--ease-out) both; }
+  @keyframes heroIn { from { transform: scale(1.06); } to { transform: scale(1); } }
+}
+
+/* --------------------------------------------------------------------------
+   4 · PAGE HERO — apertura delle pagine interne (team, contatti).
+       Tipografica: zero immagini = carico istantaneo.
+   -------------------------------------------------------------------------- */
+.page-hero {
+  display: grid;
+  gap: var(--sp-s);
+  padding-block: calc(var(--header-h) + var(--sp-l)) var(--sp-l);
+}
+.page-hero__title { max-width: 18ch; }
+.page-hero__lead {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--marrone-70);
+  max-width: 52ch;
+}
+
+/* --------------------------------------------------------------------------
+   5 · SEZIONI — base, varianti, testi guida
+   -------------------------------------------------------------------------- */
+.section { padding-block: var(--sp-xl); }
+.section--tight { padding-block: var(--sp-l); }
+
+.section--dark {
+  background: var(--verde-scuro);
+  color: rgba(237, 235, 230, .85);
+}
+/* Riconversione dei componenti su fondo scuro — in un colpo solo */
+.section--dark :where(h2, h3, h4) { color: var(--crema); }
+.section--dark .eyebrow { color: var(--oro); }
+.section--dark .quote__cite { color: rgba(237, 235, 230, .62); }
+.section--dark .chip { border-color: rgba(237, 235, 230, .22); color: rgba(237, 235, 230, .78); }
+.section--dark .figure { background: rgba(237, 235, 230, .08); }
+.section--dark .card__tag,
+.section--dark .section-head__lead { color: rgba(237, 235, 230, .78); }
+
+/* Testata di sezione */
+.section-head { display: grid; gap: var(--sp-xs); max-width: 64ch; }
+.section-head__lead {
+  font-size: var(--fs-body-l);
+  line-height: 1.55;
+  color: var(--marrone-70);
+}
+
+/* Lead display: la frase-manifesto in font display */
+.lead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-body-l);
+  line-height: 1.45;
+}
+
+/* Banda marquee: cornice hairline, respiro verticale */
+.band {
+  padding-block: var(--sp-m);
+  border-block: 1px solid var(--crema-bordo);
+  background: var(--crema-chiara);
+}
+
+/* --------------------------------------------------------------------------
+   6 · SPLIT — due colonne editoriali. La colonna di testo si imposta
+       per contesto con --split-cols; l'aside può restare appiccicata.
+   -------------------------------------------------------------------------- */
+.split { display: grid; gap: var(--sp-m); }
+@media (min-width: 64em) {
+  .split {
+    grid-template-columns: var(--split-cols, 5fr 7fr);
+    gap: var(--sp-l) var(--sp-xl);
+    align-items: start;
+  }
+  .split__aside {
+    position: sticky;
+    top: calc(var(--header-h) + var(--sp-m));    /* la testata ti accompagna */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7 · MANIFESTO — 5/7 : aside = testata, main = lead + paragrafi
+   -------------------------------------------------------------------------- */
+.manifesto { --split-cols: 5fr 7fr; }
+.manifesto__body { display: grid; gap: var(--sp-s); }
+.manifesto__sign {
+  display: inline-flex;
+  align-items: center;
+  gap: .8em;
+  margin-block-start: var(--sp-2xs);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.manifesto__sign::before {
+  content: "";
+  inline-size: 2.5rem;
+  height: 1px;
+  background: var(--oro);
+}
+
+/* --------------------------------------------------------------------------
+   8 · PILLARS — i tre pilastri. Mobile: pila. Desktop: 3 colonne
+       con la centrale abbassata: ritmo editoriale, non griglia da cruscotto.
+   -------------------------------------------------------------------------- */
+.pillars { display: grid; gap: var(--sp-l); }
+@media (min-width: 64em) {
+  .pillars { grid-template-columns: repeat(3, 1fr); gap: var(--sp-l) var(--sp-m); }
+  .pillars > :nth-child(2) { margin-block-start: clamp(2rem, 6vw, 5rem); }
+}
+
+/* --------------------------------------------------------------------------
+   9 · VISION — sezione scura. Testo a sinistra (7), ritratto a destra (5).
+       Sotto: la quote del fondatore, larga e centrale.
+   -------------------------------------------------------------------------- */
+.vision { --split-cols: 7fr 5fr; }
+.vision__body { display: grid; gap: var(--sp-s); }
+.vision__quote {
+  margin-block-start: var(--sp-xl);
+  max-width: 60ch;
+}
+
+/* --------------------------------------------------------------------------
+   10 · GALLERIA — mobile: carosello orizzontale a scatto, full-bleed.
+        Desktop: masonry su 3 colonne (aspect-ratio misti delle figure).
+   -------------------------------------------------------------------------- */
+@media (max-width: 63.99em) {
+  .gallery {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(72vw, 22rem);
+    gap: var(--sp-s);
+    margin-inline: calc(-1 * var(--gutter));    /* sfora il container fino al bordo */
+    padding-inline: var(--gutter);              /* ma il primo card allinea al testo */
+    scroll-padding-inline: var(--gutter);      /* lo scatto rispetta il gutter */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;                      /* la barra non serve: si vede che scorre */
+  }
+  .gallery::-webkit-scrollbar { display: none; }
+  .gallery__item { scroll-snap-align: start; }
+}
+@media (min-width: 64em) {
+  .gallery {
+    display: block;
+    columns: 3;                                 /* masonry vero, zero JS */
+    column-gap: var(--sp-m);
+  }
+  .gallery__item {
+    break-inside: avoid;
+    margin-block-end: var(--sp-m);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11 · CTA FINALE — il momento del "parliamone". Centro, display, oro.
+   -------------------------------------------------------------------------- */
+.cta {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--sp-s);
+}
+.cta .eyebrow::before { display: none; }         /* al centro niente linea sbilenca */
+.cta .eyebrow { letter-spacing: .4em; }
+.cta__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.1rem, 5.5vw, 4.25rem);
+  line-height: 1.08;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+.cta__sub { font-size: var(--fs-body-l); color: rgba(237, 235, 230, .8); max-width: 52ch; }
+
+/* --------------------------------------------------------------------------
+   12 · FOOTER — crema, quieto, hairline sopra. Chiude con discrezione.
+   -------------------------------------------------------------------------- */
+.footer {
+  border-block-start: 1px solid var(--crema-bordo);
+  padding-block: var(--sp-l) var(--sp-m);
+}
+.footer__grid { display: grid; gap: var(--sp-l); }
+@media (min-width: 48em) {
+  .footer__grid { grid-template-columns: 2fr 1fr 1fr; gap: var(--sp-xl); }
+}
+.footer__tagline {
+  margin-block-start: var(--sp-xs);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--marrone-70);
+  max-width: 26ch;
+}
+.footer__title {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-block-end: var(--sp-xs);
+}
+.footer__list { display: grid; gap: .35rem; }
+.footer__link {
+  font-size: var(--fs-small);
+  color: var(--marrone-70);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+.footer__link:hover,
+.footer__link:focus-visible { color: var(--verde); }
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-xs) var(--sp-m);
+  align-items: center;
+  margin-block-start: var(--sp-l);
+  padding-block-start: var(--sp-s);
+  border-block-start: 1px solid var(--crema-bordo);
+}
+.footer__legal {
+  font-size: var(--fs-micro);
+  letter-spacing: .05em;
+  color: var(--taupe);
+}
+.back-top {
+  margin-inline-start: auto;                    /* attaccato a destra */
+  display: inline-flex;
+  align-items: center;
+  gap: .5em;
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--marrone-70);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+.back-top__arr { transition: transform var(--t-med) var(--ease-out); }
+.back-top:hover,
+.back-top:focus-visible { color: var(--verde); }
+.back-top:hover .back-top__arr,
+.back-top:focus-visible .back-top__arr { transform: translateY(-.2em); }
+
+/* --------------------------------------------------------------------------
+   13 · PAGINA TEAM — griglia che si adatta da sola (auto-fit):
+        1 col mobile → 2 → 3-4 su schermi larghi. Nessun breakpoint extra.
+   -------------------------------------------------------------------------- */
+.team-grid {
+  display: grid;
+  gap: var(--sp-l) var(--sp-m);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+.member { display: grid; gap: var(--sp-2xs); justify-items: start; }
+.member__name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+  line-height: 1.15;
+}
+.member__role {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--verde);
+}
+.member__bio { font-size: var(--fs-small); line-height: 1.55; color: var(--marrone-70); }
+
+/* Valori: hairline sopra, numero oro, titolo, testo */
+.values {
+  display: grid;
+  gap: var(--sp-l) var(--sp-m);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+.value {
+  display: grid;
+  gap: var(--sp-2xs);
+  border-block-start: 1px solid var(--crema-bordo);
+  padding-block-start: var(--sp-s);
+}
+.value__num {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h2);
+  line-height: 1;
+  color: var(--oro);
+}
+.value__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--fs-h3);
+}
+.value__txt { font-size: var(--fs-small); line-height: 1.55; color: var(--marrone-70); }
+
+/* --------------------------------------------------------------------------
+   14 · PAGINA CONTATTI — form a sinistra (7), recapiti a destra (5)
+   -------------------------------------------------------------------------- */
+.contact-layout { display: grid; gap: var(--sp-xl); }
+@media (min-width: 64em) {
+  .contact-layout { grid-template-columns: 7fr 5fr; gap: var(--sp-l) var(--sp-xl); }
+}
+.contact-aside { display: grid; gap: var(--sp-l); align-content: start; }
+.contact-block { display: grid; gap: var(--sp-3xs); }
+.contact-block__label {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.contact-block__value { font-size: var(--fs-body); }
+.contact-block__value a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--marrone-40);
+  text-underline-offset: .2em;
+  transition: color var(--t-fast), text-decoration-color var(--t-fast);
+}
+.contact-block__value a:hover,
+.contact-block__value a:focus-visible { color: var(--verde); text-decoration-color: var(--verde); }
+.contact-note { font-style: italic; color: var(--marrone-70); font-size: var(--fs-small); }
+
+.form { display: grid; gap: var(--sp-m); }
+.form__row { display: grid; gap: var(--sp-m); }
+@media (min-width: 40em) { .form__row { grid-template-columns: 1fr 1fr; } }
+.form__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-s);
+  align-items: center;
+}
+.form__status {
+  display: none;
+  padding: .8em 1.2em;
+  border: 1px solid currentColor;
+  border-radius: var(--radius-s);
+  font-size: var(--fs-small);
+}
+.form__status.is-visible { display: block; }
+.form__status--ok   { color: var(--verde); background: rgba(36, 88, 78, .07); }
+.form__status--err  { color: var(--errore); background: rgba(163, 59, 46, .06); }
+
+/* --------------------------------------------------------------------------
+   15 · ANCORE — ogni sezione con id atterra sotto l'header, mai sotto di lui
+   -------------------------------------------------------------------------- */
+section[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
+
+/* --------------------------------------------------------------------------
+   16 · PRINT — il sito sa anche farsi stampare: cv/presentazioni.
+   -------------------------------------------------------------------------- */
+@media print {
+  .header, .site-nav, .hero__cue, .band, .btn, .back-top { display: none !important; }
+  body { background: #fff; color: #000; }
+  .section--dark { background: #fff; color: #000; }
+  .section--dark :where(h2, h3) { color: #000; }
+  .section { padding-block: 1rem; }
+}
+
+/* ==========================================================================
+   EMENDAMENTO FASE 3 — appendere alla fine di layout.css
+   1) Header glass SIN DAL caricamento: il logo non deve dipendere dalla
+      fortuna della foto sottostante — ora, e quando il cliente cambierà
+      le immagini. Specificità: .is-scrolled e body.menu-open vincono
+      comunque, la cascata resta intatta.
+   2) Reduced-motion: i .reveal non devono mai partire nascosti.
+   ========================================================================== */
+.header {
+  background: rgba(237, 235, 230, .72);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.js .reveal { opacity: 1; translate: none; }
+}
+
+/* ==========================================================================
+   EMENDAMENTO FASE 4 — team.html · appendere alla fine di layout.css
+   ========================================================================== */
+
+/* 1 · MONOGRAMMA — il ritratto tipografico del membro. Stessa anatomia del
+       wordmark: lettere + punto oro. Quando arrivano le foto reali si scambia
+       il <div> con <figure class="figure figure--portrait">: aspect-ratio
+       3/4 già previsto, la griglia non cambia di una riga. */
+.member__mono {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--crema-bordo);
+  border-radius: var(--radius-m);
+  background: var(--crema-chiara);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  letter-spacing: .06em;
+  line-height: 1;
+  color: var(--marrone-40);
+}
+.member__mono b { color: var(--oro); font-weight: 600; }
+
+/* 2 · GRIGLIA TEAM — colonne esplicite dai breakpoint (2 → 3) al posto
+       dell'auto-fit di fase 2: 5 carte devono disegnare 3+2 su desktop,
+       non colonne a sorpresa sugli ultrawide. Sotto 40em l'auto-fit resta:
+       fluido da solo, 1–2 colonne naturali. */
+@media (min-width: 40em) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 64em) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
+
+/* 3 · CARTA "JOIN" — l'intera carta è il link; il mono si accende d'oro. */
+.member--join { text-decoration: none; }
+.member--join .member__mono {
+  transition: border-color var(--t-med) var(--ease-out),
+              color var(--t-med) var(--ease-out);
+}
+.member--join:hover .member__mono,
+.member--join:focus-visible .member__mono {
+  border-color: var(--oro);
+  color: var(--marrone);
+}
+.member--join:focus-visible { outline-offset: .5em; }
+
+/* 4 · CHIUSURA — quote centrata e più raccolta, divider corto, CTA sotto. */
+.closing .quote { justify-items: center; text-align: center; }
+.closing .quote__text {
+  max-width: 34ch;
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+}
+.closing .divider {
+  max-width: 22rem;
+  margin-inline: auto;
+  margin-block: var(--sp-l);
+}

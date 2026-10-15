@@ -1,0 +1,11 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor e log
+*.swp
+*.log
+
+# Solo se un giorno arrivassero tool di build (oggi non servono)
+node_modules/

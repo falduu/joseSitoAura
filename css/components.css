@@ -1,0 +1,317 @@
+/* ==========================================================================
+   AURA — components.css
+   Pezzi riutilizzabili: bottoni, logo, eyebrow, figure, card, marquee,
+   quote, divider, chip, campi form. Ignara della pagina che la usa.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1 · LOGO — wordmark puro, zero immagini: pesa 0 KB.
+       "A U R A" spaziato + punto oro. Tipografia come identità.
+   -------------------------------------------------------------------------- */
+.logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  letter-spacing: .35em;             /* il lusso è nel respiro */
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+  display: inline-block;
+}
+.logo b { color: var(--oro); font-weight: 600; }        /* il punto finale */
+.logo--inv { color: var(--crema); }                     /* su fondo scuro */
+
+/* --------------------------------------------------------------------------
+   2 · BUTTONS — min-height 3rem = 48px: tap target comodo su telefono.
+       Tre anime: solid (verde), gold (oro, CTA finale), ghost (bordo).
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6em;
+  min-height: 3rem;                        /* 48px — dito felice */
+  padding: .75em 1.7em;
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: var(--radius-s);
+  transition: background var(--t-med) var(--ease-out),
+              color var(--t-med) var(--ease-out),
+              border-color var(--t-med) var(--ease-out);
+}
+
+/* Freccia ↗ che "scivola" in avanti: micro-emozione da 2 righe */
+.btn .arr { transition: transform var(--t-med) var(--ease-out); }
+.btn:hover .arr,
+.btn:focus-visible .arr { transform: translate(15%, -15%); }
+
+/* — Varianti — */
+.btn--solid {
+  background: var(--verde);
+  color: var(--crema);
+}
+.btn--solid:hover { background: var(--verde-scuro); }
+
+.btn--gold {
+  background: var(--oro);
+  color: var(--marrone);
+}
+.btn--gold:hover { background: var(--oro-scuro); }
+
+.btn--ghost {
+  border: 1px solid currentColor;          /* hairline tipografico */
+  color: var(--marrone);
+  background: transparent;
+}
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--marrone);
+  color: var(--crema);
+}
+
+/* Ghost invertito per sezioni scure / foto */
+.btn--ghost-inv {
+  border: 1px solid currentColor;
+  color: var(--crema);
+  background: transparent;
+}
+.btn--ghost-inv:hover,
+.btn--ghost-inv:focus-visible {
+  background: var(--oro);
+  border-color: var(--oro);
+  color: var(--marrone);
+}
+
+/* --------------------------------------------------------------------------
+   3 · EYEBROW — etichetta di sezione. Linea + parola.
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .8em;
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: .35em;
+  text-transform: uppercase;
+  color: var(--verde);
+}
+.eyebrow::before {
+  content: "";
+  inline-size: clamp(2rem, 6vw, 4rem);    /* la linea cresce col viewport */
+  height: 1px;
+  background: currentColor;
+  flex: none;
+}
+.eyebrow--gold { color: var(--oro); }     /* versione per fondi scuri */
+
+/* --------------------------------------------------------------------------
+   4 · FIGURE — ogni immagine ha una forma dichiarata.
+       aspect-ratio = zero salto di layout (CLS 0) mentre carica.
+   -------------------------------------------------------------------------- */
+.figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-m);
+  background: var(--crema-bordo);         /* placeholder mentre l'img arriva */
+}
+.figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.figure--portrait { aspect-ratio: 3 / 4; }
+.figure--square   { aspect-ratio: 1; }
+.figure--wide     { aspect-ratio: 16 / 10; }
+.figure--hero     { aspect-ratio: 4 / 5; }  /* su mobile il hero resta alto */
+@media (min-width: 48em) { .figure--hero { aspect-ratio: 16 / 9; } }
+
+/* --------------------------------------------------------------------------
+   5 · CARD — i 3 pilastri (Environment · Culinary · Mixology).
+       Tutta la card è cliccabile: immagine, titolo e caption d'accordo.
+   -------------------------------------------------------------------------- */
+.card {
+  display: grid;
+  gap: var(--sp-s);
+  justify-items: start;
+}
+.card__link { text-decoration: none; display: grid; gap: inherit; width: 100%; }
+
+.card__fig { overflow: hidden; border-radius: var(--radius-m); }
+.card__fig img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);               /* evita il bordo sfumato in scale() */
+  transition: transform .6s var(--ease-out);
+  will-change: transform;
+}
+.card__link:hover .card__fig img,
+.card__link:focus-visible .card__fig img { transform: scale(1.045); }
+
+/* Didascalia: numero d'ordine + titolo + tagline — la voce del brand */
+.card__cap { display: grid; gap: var(--sp-3xs); }
+.card__num {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .3em;
+  color: var(--taupe);
+}
+.card__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: 1.15;
+}
+.card__tag {
+  font-size: var(--fs-small);
+  color: var(--marrone-70);
+  font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   6 · MARQUEE — la banda in scorrimento. Due grupi identici,
+       translateX(-50%) = loop matematicamente perfetto, zero JS.
+   -------------------------------------------------------------------------- */
+.marquee {
+  overflow: hidden;
+  user-select: none;
+}
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee__group {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding-inline: clamp(.75rem, 2vw, 1.5rem);
+  white-space: nowrap;
+}
+.marquee__txt {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+.marquee__sep { color: var(--oro); font-size: .55em; transform: translateY(-.1em); }
+
+.marquee:hover .marquee__track { animation-play-state: paused; }  /* cortesia */
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* --------------------------------------------------------------------------
+   7 · QUOTE — la citazione del fondatore. Grande, con firma.
+   -------------------------------------------------------------------------- */
+.quote { display: grid; gap: var(--sp-m); justify-items: start; }
+.quote__mark {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: .6;                       /* la virgoletta "poggia" sul testo */
+  color: var(--oro);
+}
+.quote__text {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 3.2vw, 2.4rem);
+  line-height: 1.3;
+  text-wrap: balance;
+  max-width: 30ch;                       /* le citazioni respirano strette */
+}
+.quote__cite {
+  display: inline-flex;
+  align-items: center;
+  gap: .8em;
+  font-size: var(--fs-small);
+  font-style: normal;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.quote__cite::before {
+  content: "";
+  inline-size: clamp(1.5rem, 4vw, 3rem);
+  height: 1px;
+  background: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   8 · DIVIDER — linea + diamante ◆ + linea. Separatore di capitolo.
+   -------------------------------------------------------------------------- */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--crema-bordo);
+}
+.divider__gem { color: var(--oro); font-size: .8em; line-height: 1; }
+.divider--dark::before, .divider--dark::after { background: var(--verde-20); }
+
+/* --------------------------------------------------------------------------
+   9 · CHIP — etichetta pill (categoria corso, meta galleria, footer)
+   -------------------------------------------------------------------------- */
+.chip {
+  display: inline-block;
+  padding: .45em 1.1em;
+  border: 1px solid var(--marrone-15);
+  border-radius: 999px;                  /* in em: pill perfetta a ogni scala */
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--marrone-70);
+}
+.chip--on-dark { border-color: var(--verde-20); color: var(--crema); }
+
+/* --------------------------------------------------------------------------
+   10 · CAMPI FORM — stile "modulo d'invito": etichetta sopra,
+        solo hairline sotto. Il lusso è il silenzio.
+   -------------------------------------------------------------------------- */
+.field { display: grid; gap: .45rem; }
+.field__label {
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.field__input,
+.field__textarea {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--marrone-40);
+  border-radius: 0;                       /* niente glow nativo iOS */
+  padding: .65em 0;
+  color: var(--marrone);
+  transition: border-color var(--t-med) var(--ease-out);
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field__input::placeholder,
+.field__textarea::placeholder { color: var(--marrone-40); }
+.field__input:hover,
+.field__textarea:hover { border-color: var(--marrone); }
+.field__input:focus-visible,
+.field__textarea:focus-visible {
+  outline: none;                          /* il focus è la linea stessa */
+  border-color: var(--verde);
+  border-bottom-width: 2px;               /* spessore = enfasi, non alone */
+}
+.field__textarea { min-height: 8em; resize: vertical; }
+
+/* Stato errore — sobrio, spiegato a parole sotto il campo */
+.field--error .field__input,
+.field--error .field__textarea { border-color: var(--errore); }
+.field__msg {
+  display: none;
+  font-size: var(--fs-micro);
+  letter-spacing: .05em;
+  color: var(--errore);
+}
+.field--error .field__msg { display: block; }

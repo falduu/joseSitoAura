@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contact · AURA — Private Motorsport Hospitality</title>
+  <meta name="description" content="Tell us about your race: AURA designs private gastronomic experiences inside the world of motorsport — fine dining, mixology and bespoke lounges, by invitation.">
+  <meta name="theme-color" content="#164037">
+
+  <script>document.documentElement.classList.replace('no-js','js')</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@500;600&display=swap">
+
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+    <!-- ===== SEO · social · structured data =====
+       TODO(live): find&replace "https://aura-hospitality.com" col dominio reale
+       (anche robots.txt e sitemap.xml). -->
+  <link rel="canonical" href="https://aura-hospitality.com/contatti.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AURA">
+  <meta property="og:title" content="Contact · AURA — Private Motorsport Hospitality">
+  <meta property="og:description" content="Tell us about your race: AURA designs private gastronomic experiences inside the world of motorsport — fine dining, mixology and bespoke lounges, by invitation.">
+  <meta property="og:url" content="https://aura-hospitality.com/contatti.html">
+  <meta property="og:image" content="https://aura-hospitality.com/assets/img/hero.jpg">
+  <meta property="og:image:width" content="1179">
+  <meta property="og:image:height" content="900">
+  <meta property="og:image:alt" content="The AURA lounge at the circuit">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AURA",
+    "url": "https://aura-hospitality.com/",
+    "logo": "https://aura-hospitality.com/assets/icons/favicon.svg",
+    "description": "Private motorsport hospitality: fine dining, artisanal mixology and bespoke lounges inside the world of racing.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@aura-hospitality.com",
+      "telephone": "+390200000000",
+      "availableLanguage": ["en", "it"]
+    }
+  }
+  </script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="header">
+    <div class="header__inner container">
+
+      <a class="logo" href="index.html">AURA<b>.</b></a>
+
+      <button class="nav-toggle" type="button"
+              aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <ul class="site-nav__list" role="list">
+          <li><a class="site-nav__link" href="index.html#manifesto">Manifesto</a></li>
+          <li><a class="site-nav__link" href="index.html#experience">Experience</a></li>
+          <li><a class="site-nav__link" href="index.html#gallery">Gallery</a></li>
+          <li><a class="site-nav__link" href="team.html">The Team</a></li>
+        </ul>
+        <a class="site-nav__cta btn btn--ghost-inv" href="contatti.html">
+          Get in touch <span class="arr" aria-hidden="true">→</span>
+        </a>
+      </nav>
+
+      <a class="header__cta btn btn--solid" href="contatti.html">
+        Get in touch <span class="arr" aria-hidden="true">→</span>
+      </a>
+
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <div class="page-hero container">
+      <p class="eyebrow reveal">By invitation</p>
+      <h1 class="page-hero__title reveal reveal--d1">Let’s set the table</h1>
+      <p class="page-hero__lead reveal reveal--d2">
+        Tell us about your race, your guests and your brand — we’ll design
+        the experience around it, from the first aperitivo to the last lap.
+      </p>
+    </div>
+
+    <section class="section" id="enquiry">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- TODO(client): replace email in action= with the real address.
+               form.js composes the mail; this action is the no-JS fallback. -->
+          <form class="form" id="contact-form"
+                method="post"
+                action="mailto:hello@aura-hospitality.com"
+                enctype="text/plain">
+
+            <div class="form__row">
+              <p class="field">
+                <label class="field__label" for="f-name">Name</label>
+                <input class="field__input" type="text" id="f-name" name="name"
+                       autocomplete="name" required>
+                <span class="field__msg" id="err-name">Please tell us your name.</span>
+              </p>
+
+              <p class="field">
+                <label class="field__label" for="f-email">Email</label>
+                <input class="field__input" type="email" id="f-email" name="email"
+                       autocomplete="email" required>
+                <span class="field__msg" id="err-email">That email doesn’t look right.</span>
+              </p>
+            </div>
+
+            <div class="form__row">
+              <p class="field">
+                <label class="field__label" for="f-company">Company · Brand</label>
+                <input class="field__input" type="text" id="f-company" name="company"
+                       autocomplete="organization">
+              </p>
+
+              <p class="field">
+                <label class="field__label" for="f-event">Your event</label>
+                <input class="field__input" type="text" id="f-event" name="event"
+                       placeholder="e.g. Monza, September 2026">
+              </p>
+            </div>
+
+            <p class="field">
+              <label class="field__label" for="f-msg">Message</label>
+              <textarea class="field__textarea" id="f-msg" name="message"
+                        rows="4" required></textarea>
+              <span class="field__msg" id="err-msg">A few words — we’ll take it from there.</span>
+            </p>
+
+            <input type="hidden" name="_subject" value="AURA — Private enquiry">
+
+            <div class="form__foot">
+              <button class="btn btn--solid" type="submit">
+                Send enquiry <span class="arr" aria-hidden="true">→</span>
+              </button>
+              <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
+
+          <!-- TODO(client): real email, phone and address. -->
+          <aside class="contact-aside">
+            <div class="contact-block">
+              <p class="contact-block__label">Direct line</p>
+              <p class="contact-block__value">
+                <a href="mailto:hello@aura-hospitality.com">hello@aura-hospitality.com</a><br>
+                <a href="tel:+390200000000">+39 02 0000 0000</a>
+              </p>
+            </div>
+
+            <div class="contact-block">
+              <p class="contact-block__label">Where to find us</p>
+              <p class="contact-block__value">
+                Milan, Italy — and at the circuit,<br>most weekends.
+              </p>
+            </div>
+
+            <p class="contact-note">
+              We reply within 48 hours. Your details stay between us:
+              no lists, no newsletters.
+            </p>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div>
+          <a class="logo" href="index.html">AURA<b>.</b></a>
+          <p class="footer__tagline">Hospitality at racing speed.</p>
+        </div>
+
+        <nav aria-label="Footer">
+          <p class="footer__title">Explore</p>
+          <ul class="footer__list" role="list">
+            <li><a class="footer__link" href="index.html#manifesto">Manifesto</a></li>
+            <li><a class="footer__link" href="index.html#experience">Experience</a></li>
+            <li><a class="footer__link" href="index.html#gallery">Gallery</a></li>
+            <li><a class="footer__link" href="index.html#vision">Vision</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <p class="footer__title">Company</p>
+          <ul class="footer__list" role="list">
+            <li><a class="footer__link" href="team.html">The Team</a></li>
+            <li><a class="footer__link" href="contatti.html" aria-current="page">Contact</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__legal">
+          © <span id="year">2025</span> AURA · Private Motorsport Hospitality.
+          All rights reserved.
+        </p>
+        <a class="back-top" href="#top">
+          Back to top <span class="back-top__arr" aria-hidden="true">↑</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/form.js" defer></script>
+</body>
+</html>
