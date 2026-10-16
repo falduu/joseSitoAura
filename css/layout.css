@@ -296,6 +296,20 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
   padding-block: calc(var(--header-h) + var(--sp-l)) var(--sp-l);
 }
 .page-hero__title { max-width: 18ch; }
+.page-hero__title--team {
+  margin-inline: auto;
+  text-align: center;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+}
+.page-hero__lead--team {
+  max-width: 65ch;
+  margin-inline: auto;
+  text-align: center;
+  text-wrap: balance;
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
+}
 .page-hero__lead {
   font-size: var(--fs-body-l);
   line-height: 1.55;
@@ -308,6 +322,7 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
    -------------------------------------------------------------------------- */
 .section { padding-block: var(--sp-xl); }
 .section--tight { padding-block: var(--sp-l); }
+#crew { padding-top: var(--sp-m); }
 
 .section--dark {
   background: var(--verde-scuro);
