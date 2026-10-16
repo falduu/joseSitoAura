@@ -667,46 +667,90 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
    EMENDAMENTO FASE 4 — team.html · appendere alla fine di layout.css
    ========================================================================== */
 
-/* 1 · MONOGRAMMA — il ritratto tipografico del membro. Stessa anatomia del
-       wordmark: lettere + punto oro. Quando arrivano le foto reali si scambia
-       il <div> con <figure class="figure figure--portrait">: aspect-ratio
-       3/4 già previsto, la griglia non cambia di una riga. */
-.member__mono {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  border: 1px solid var(--crema-bordo);
-  border-radius: var(--radius-m);
-  background: var(--crema-chiara);
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
-  letter-spacing: .06em;
-  line-height: 1;
-  color: var(--marrone-40);
-}
-.member__mono b { color: var(--oro); font-weight: 600; }
-
-/* 2 · GRIGLIA TEAM — colonne esplicite dai breakpoint (2 → 3) al posto
-       dell'auto-fit di fase 2: 5 carte devono disegnare 3+2 su desktop,
+/* 1 · GRIGLIA TEAM — colonne esplicite dai breakpoint (2 → 3) al posto
+       dell'auto-fit di fase 2: tre carte restano allineate su desktop,
        non colonne a sorpresa sugli ultrawide. Sotto 40em l'auto-fit resta:
        fluido da solo, 1–2 colonne naturali. */
 @media (min-width: 40em) { .team-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 64em) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
 
-/* 3 · CARTA "JOIN" — l'intera carta è il link; il mono si accende d'oro. */
-.member--join { text-decoration: none; }
-.member--join .member__mono {
-  transition: border-color var(--t-med) var(--ease-out),
-              color var(--t-med) var(--ease-out);
+/* 2 · CARTE TEAM — iniziali sul fronte, profilo sul retro. */
+.member__card { width: 100%; perspective: 70rem; }
+.member__card-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  transform-style: preserve-3d;
+  transition: transform var(--t-slow) var(--ease-inout);
 }
-.member--join:hover .member__mono,
-.member--join:focus-visible .member__mono {
-  border-color: var(--oro);
-  color: var(--marrone);
+.member__card.is-flipped .member__card-inner { transform: rotateY(180deg); }
+.member__face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  gap: var(--sp-2xs);
+  overflow: hidden;
+  padding: var(--sp-s);
+  border: 1px solid var(--crema-bordo);
+  border-radius: var(--radius-m);
+  background: var(--crema-chiara);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
-.member--join:focus-visible { outline-offset: .5em; }
+.member__face--back { transform: rotateY(180deg); }
+.member__face--front {
+  padding: 0;
+  transition: border-color var(--t-med) var(--ease-out);
+}
+.member__face--front:focus-within { border-color: var(--oro); }
+.member__mono {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--marrone-40);
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-weight: 500;
+  letter-spacing: .06em;
+  line-height: 1;
+}
+.member__mono b { color: var(--oro); font-weight: 600; }
+.member__back {
+  justify-self: start;
+  margin-block-start: var(--sp-2xs);
+  color: var(--verde);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.member__back:hover,
+.member__back:focus-visible { color: var(--marrone); }
+
+@media (prefers-reduced-motion: reduce) {
+  .member__card-inner { transition: none; }
+}
+@media (hover: hover) {
+  .member__mono:hover { color: var(--marrone); }
+}
+
+.no-js .member__card-inner {
+  display: grid;
+  aspect-ratio: auto;
+  transform: none;
+}
+.no-js .member__face {
+  position: relative;
+  inset: auto;
+  backface-visibility: visible;
+  -webkit-backface-visibility: visible;
+}
+.no-js .member__face--front { aspect-ratio: 3 / 4; }
+.no-js .member__face--back { transform: none; }
+.no-js .member__mono { pointer-events: none; }
+.no-js .member__back { display: none; }
 
 /* 4 · CHIUSURA — quote centrata e più raccolta, divider corto, CTA sotto. */
 .closing .quote { justify-items: center; text-align: center; }

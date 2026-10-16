@@ -102,7 +102,41 @@
     revealEls.forEach((el) => el.classList.add('is-inview'));
   }
 
-  /* 4 · ANNO FOOTER — il markup parte con "2025" statico:
+  /* 4 · TEAM — gira la scheda e mantiene coerenti focus e screen reader. */
+  $$('[data-member-card]').forEach((card) => {
+    const front = $('.member__face--front', card);
+    const back = $('.member__face--back', card);
+    const trigger = $('.member__mono', card);
+    const close = $('.member__back', card);
+    if (!front || !back || !trigger || !close) return;
+
+    const setFlipped = (flipped) => {
+      card.classList.toggle('is-flipped', flipped);
+      front.setAttribute('aria-hidden', String(flipped));
+      back.setAttribute('aria-hidden', String(!flipped));
+      trigger.setAttribute('aria-expanded', String(flipped));
+      trigger.disabled = flipped;
+      close.disabled = !flipped;
+    };
+
+    setFlipped(false);
+    trigger.addEventListener('click', () => {
+      setFlipped(true);
+      close.focus();
+    });
+    close.addEventListener('click', () => {
+      setFlipped(false);
+      trigger.focus();
+    });
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && card.classList.contains('is-flipped')) {
+        setFlipped(false);
+        trigger.focus();
+      }
+    });
+  });
+
+  /* 5 · ANNO FOOTER — il markup parte con "2025" statico:
          anche senza JS resta corretto fino a dicembre. */
   const year = $('#year');
   if (year) year.textContent = String(new Date().getFullYear());
