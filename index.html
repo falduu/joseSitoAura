@@ -1,376 +1,440 @@
 <!doctype html>
 <html lang="en" class="no-js">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>AURA · Private Motorsport Hospitality</title>
-  <meta name="description" content="AURA designs private gastronomic experiences inside the world of motorsport: fine dining, artisanal mixology and bespoke lounges — from the paddock to the podium.">
-  <meta name="theme-color" content="#164037">
+    <title>AURA · Private Motorsport Hospitality</title>
+    <meta
+      name="description"
+      content="AURA designs private gastronomic experiences inside the world of motorsport: fine dining, artisanal mixology and bespoke lounges — from the paddock to the podium."
+    />
+    <meta name="theme-color" content="#164037" />
 
-  <!-- Arma le animazioni PRIMA del primo paint (vedi note).
+    <!-- Arma le animazioni PRIMA del primo paint (vedi note).
        Se JS manca, html resta "no-js" e il sito è visibile di sua natura. -->
-  <script>document.documentElement.classList.replace('no-js','js')</script>
+    <script>
+      document.documentElement.classList.replace("no-js", "js");
+    </script>
 
-  <!-- Font: 1 famiglia, 2 pesi. Il body usa lo stack di sistema. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@500;600&display=swap">
+    <!-- Font: 1 famiglia, 2 pesi. Il body usa lo stack di sistema. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@500;600&display=swap"
+    />
 
-  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
 
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/layout.css" />
     <!-- ===== SEO · social · structured data =====
        TODO(live): find&replace "https://aura-hospitality.com" col dominio reale
        (anche robots.txt e sitemap.xml). -->
-  <link rel="canonical" href="https://aura-hospitality.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="AURA">
-  <meta property="og:title" content="AURA — Private Motorsport Hospitality">
-  <meta property="og:description" content="AURA designs private gastronomic experiences inside the world of motorsport: fine dining, artisanal mixology and bespoke lounges — from the paddock to the podium.">
-  <meta property="og:url" content="https://aura-hospitality.com/">
-  <meta property="og:image" content="https://aura-hospitality.com/assets/img/hero.jpg">
-  <meta property="og:image:width" content="1179">
-  <meta property="og:image:height" content="900">
-  <meta property="og:image:alt" content="The AURA lounge at the circuit">
-  <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "AURA",
-    "url": "https://aura-hospitality.com/",
-    "logo": "https://aura-hospitality.com/assets/icons/favicon.svg",
-    "description": "Private motorsport hospitality: fine dining, artisanal mixology and bespoke lounges inside the world of racing."
-  }
-  </script>
-</head>
-<body id="top">
-  <a class="skip-link" href="#main">Skip to content</a>
+    <link rel="canonical" href="https://aura-hospitality.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="AURA" />
+    <meta property="og:title" content="AURA — Private Motorsport Hospitality" />
+    <meta
+      property="og:description"
+      content="AURA designs private gastronomic experiences inside the world of motorsport: fine dining, artisanal mixology and bespoke lounges — from the paddock to the podium."
+    />
+    <meta property="og:url" content="https://aura-hospitality.com/" />
+    <meta
+      property="og:image"
+      content="https://aura-hospitality.com/assets/img/hero.jpg"
+    />
+    <meta property="og:image:width" content="1179" />
+    <meta property="og:image:height" content="900" />
+    <meta property="og:image:alt" content="The AURA lounge at the circuit" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "AURA",
+        "url": "https://aura-hospitality.com/",
+        "logo": "https://aura-hospitality.com/assets/icons/favicon.svg",
+        "description": "Private motorsport hospitality: fine dining, artisanal mixology and bespoke lounges inside the world of racing."
+      }
+    </script>
+  </head>
+  <body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- ============================ HEADER ============================ -->
-  <header class="header">
-    <div class="header__inner container">
+    <!-- ============================ HEADER ============================ -->
+    <header class="header">
+      <div class="header__inner container">
+        <a class="logo" href="index.html">AURA<b>.</b></a>
 
-      <a class="logo" href="index.html">AURA<b>.</b></a>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-controls="site-nav"
+          aria-expanded="false"
+          aria-label="Open menu"
+        >
+          <span></span><span></span>
+        </button>
 
-      <button class="nav-toggle" type="button"
-              aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
-
-      <!-- Mobile: overlay a tendina · Desktop: riga di link + CTA -->
-      <nav class="site-nav" id="site-nav" aria-label="Main">
-        <ul class="site-nav__list" role="list">
-          <li><a class="site-nav__link" href="#Culinary Performance">Culinary Performance</a></li>
-          <li><a class="site-nav__link" href="#experience">Experience</a></li>
-          <li><a class="site-nav__link" href="#gallery">Gallery</a></li>
-          <li><a class="site-nav__link" href="team.html">The Team</a></li>
-        </ul>
-        <a class="site-nav__cta btn btn--ghost-inv" href="contatti.html">
-          Get in touch <span class="arr" aria-hidden="true">→</span>
-        </a>
-      </nav>
-
-      <a class="header__cta btn btn--solid" href="contatti.html">
-        Get in touch <span class="arr" aria-hidden="true">→</span>
-      </a>
-
-    </div>
-  </header>
-
-  <main id="main" tabindex="-1">
-
-    <!-- ============================ HERO ============================ -->
-    <section class="hero">
-      <img class="hero__img" src="assets/img/hero.jpg"
-           alt="The AURA lounge at the circuit"
-           width="1179" height="900"
-           fetchpriority="high" decoding="async">
-
-      <div class="hero__content container">
-        <p class="eyebrow reveal">Private Motorsport Hospitality</p>
-        <!-- <h1 class="hero__title reveal reveal--d1">The Taste of Racing</h1> -->
-        <!-- <p class="hero__lead reveal reveal--d2">
-          AURA brings the excellence of the Italian table into the world of
-          motorsport — fine dining, artisanal mixology and bespoke lounges,
-          designed around your race.
-        </p> -->
-        <div class="hero__actions reveal reveal--d3">
-          <a class="btn btn--gold" href="contatti.html">
-            Plan your experience <span class="arr" aria-hidden="true">→</span>
-          </a>
-          <a class="btn btn--ghost-inv" href="team.html">Meet the team</a>
-        </div>
-      </div>
-
-      <div class="hero__cue" aria-hidden="true">
-        <!-- <span class="hero__cue-txt">Scroll</span> -->
-        <span class="hero__cue-line"></span>
-      </div>
-    </section>
-
-    <!-- =========================== MARQUEE =========================== -->
-    <div class="band">
-      <div class="marquee" aria-hidden="true">
-        <div class="marquee__track">
-          <div class="marquee__group">
-            <span class="marquee__txt">Fine Dining</span><span class="marquee__sep">◆</span>
-            <span class="marquee__txt">Artisanal Mixology</span><span class="marquee__sep">◆</span>
-            <span class="marquee__txt">Paddock Lounges</span><span class="marquee__sep">◆</span>
-            <span class="marquee__txt">Italian Excellence</span><span class="marquee__sep">◆</span>
-            <span class="marquee__txt">Race Weekends</span><span class="marquee__sep">◆</span>
-          </div>
-          <div class="marquee__group">
-            <span class="marquee__txt">Fine Dining</span><span class="marquee__sep">◆</span>
-            <span class="marquee__txt">Artisanal Mixology</span><span class="marquee__sep">◆</span>
-            <span class="marquee__txt">Paddock Lounges</span><span class="marquee__sep">◆</span>
-            <span class="marquee__txt">Italian Excellence</span><span class="marquee__sep">◆</span>
-            <span class="marquee__txt">Race Weekends</span><span class="marquee__sep">◆</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ========================== Culinary Performance ========================== -->
-    <section class="section" id="Culinary Performance">
-      <div class="container">
-        <div class="split Culinary Performance">
-
-          <div class="split__aside reveal">
-            <p class="eyebrow">Culinary Performance</p>
-            <h2>Where gastronomy becomes an event</h2>
-          </div>
-
-          <div class="Culinary Performance__body">
-            <p class="lead reveal reveal--d1">
-              AURA brings an exclusive gastronomic experience into the world of
-              motorsport — combining Italian culinary excellence, artisanal
-              mixology, sophisticated design and the adrenaline of racing.
-            </p>
-            <p class="reveal reveal--d2">
-              From intimate VIP lounges to large-scale branded hospitality
-              environments, we design every element around your audience,
-              your brand and your event.
-            </p>
-            <p class="reveal reveal--d2">
-              One team, one table: kitchen, bar and space are conceived as a
-              single piece — so that at every Grand Prix, AURA feels like home.
-              Only faster.
-            </p>
-            <p class="Culinary Performance__sign reveal reveal--d3">The AURA Team</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================== PILLARS ========================== -->
-    <section class="section" id="experience">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">The Experience</p>
-          <h2>Three crafts, one signature</h2>
-          <p class="section-head__lead">
-            Every environment is designed as one piece — and delivered as one.
-            Choose where to begin.
-          </p>
-        </div>
-
-        <div class="pillars">
-
-          <article class="card reveal reveal--d1">
-            <a class="card__link" href="contatti.html">
-              <div class="card__fig figure figure--portrait">
-                <img src="assets/img/cocktail-more.jpg"
-                     alt="Blackberry and mint signature cocktail"
-                     width="900" height="1300" loading="lazy" decoding="async">
-              </div>
-              <div class="card__cap">
-                <span class="card__num">01</span>
-                <h3 class="card__title">Immersive Environments</h3>
-                <p class="card__tag">Taste the speed. Feel the atmosphere.</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card reveal reveal--d2">
-            <a class="card__link" href="contatti.html">
-              <div class="card__fig figure figure--square">
-                <img src="assets/img/piatto-gourmet.jpg"
-                     alt="Plated gourmet course"
-                     width="1000" height="1000" loading="lazy" decoding="async">
-              </div>
-              <div class="card__cap">
-                <span class="card__num">02</span>
-                <h3 class="card__title">Culinary Performance</h3>
-                <p class="card__tag">High-end, contemporary, exclusive gourmet.</p>
-              </div>
-            </a>
-          </article>
-
-          <article class="card reveal reveal--d3">
-            <a class="card__link" href="contatti.html">
-              <div class="card__fig figure figure--portrait">
-                <img src="assets/img/cocktail-versato.jpg"
-                     alt="A signature cocktail being poured"
-                     width="900" height="1100" loading="lazy" decoding="async">
-              </div>
-              <div class="card__cap">
-                <span class="card__num">03</span>
-                <h3 class="card__title">Artisanal Mixology</h3>
-                <p class="card__tag">Sunrise, sunset, speedless experience.</p>
-              </div>
-            </a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================== VISION =========================== -->
-    <section class="section section--dark" id="vision">
-      <div class="container">
-        <div class="split vision">
-
-          <div class="vision__body reveal">
-            <p class="eyebrow">The Vision</p>
-            <h2>From the paddock to the table</h2>
-            <p class="lead">
-              From bespoke pop-up lounges to private paddock experiences, every
-              detail is designed to transform a racing weekend into an
-              unforgettable sensory journey.
-            </p>
-            <p>
-              Intimate VIP lounges or large-scale branded hospitality: we shape
-              each environment around your audience, your brand and your
-              event — down to the last detail.
-            </p>
-          </div>
-
-          <div class="split__aside reveal reveal--d1">
-            <figure class="figure figure--square">
-              <img src="assets/img/cocktail-mano.jpg"
-                   alt="Signature cocktail in hand at a paddock lounge"
-                   width="900" height="1000" loading="lazy" decoding="async">
-            </figure>
-          </div>
-
-        </div>
-
-        <figure class="quote vision__quote reveal">
-          <div class="quote__mark" aria-hidden="true">“</div>
-          <blockquote class="quote__text">
-            A sophisticated fusion of gastronomy and design, where the energy of
-            the circuit meets the elegance of Italian hospitality — creating a
-            sense of connection and trust.
-          </blockquote>
-          <figcaption class="quote__cite">The AURA Founding Team</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- =========================== GALLERY =========================== -->
-    <section class="section" id="gallery">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="eyebrow">Gallery</p>
-          <h2>Atmosphere, plated</h2>
-          <p class="section-head__lead">
-            A glimpse of what we set at the table — and around it.
-          </p>
-        </div>
-      </div>
-
-      <!-- Mobile: carosello a scatto full-bleed · Desktop: masonry.
-           Il container + margini negativi = la scorsa esce fino al bordo. -->
-      <div class="gallery container">
-        <figure class="figure figure--portrait gallery__item reveal">
-          <img src="assets/img/cocktail-versato.jpg"
-               alt="A signature cocktail being poured"
-               width="900" height="1100" loading="lazy" decoding="async">
-        </figure>
-        <figure class="figure figure--square gallery__item reveal reveal--d1">
-          <img src="assets/img/piatto-gourmet.jpg"
-               alt="Plated gourmet course"
-               width="1000" height="1000" loading="lazy" decoding="async">
-        </figure>
-        <figure class="figure figure--wide gallery__item reveal reveal--d2">
-          <img src="assets/img/cocktail-mano.jpg"
-               alt="Signature cocktail in hand at a paddock lounge"
-               width="900" height="1000" loading="lazy" decoding="async">
-        </figure>
-        <figure class="figure figure--portrait gallery__item reveal reveal--d3">
-          <img src="assets/img/cocktail-more.jpg"
-               alt="Blackberry and mint signature cocktail"
-               width="900" height="1300" loading="lazy" decoding="async">
-        </figure>
-      </div>
-    </section>
-
-    <!-- ============================ CTA ============================ -->
-    <section class="section section--dark">
-      <div class="container">
-        <div class="cta reveal">
-          <p class="eyebrow">By invitation</p>
-          <h2 class="cta__title">Let’s set your table at the next race</h2>
-          <p class="cta__sub">
-            Tell us about your event — we’ll design the experience around it,
-            from the first aperitivo to the last lap.
-          </p>
-          <a class="btn btn--gold" href="contatti.html">
+        <!-- Mobile: overlay a tendina · Desktop: riga di link + CTA -->
+        <nav class="site-nav" id="site-nav" aria-label="Main">
+          <ul class="site-nav__list" role="list">
+            <li>
+              <a class="site-nav__link" href="#Culinary Performance"
+                >Culinary Performance</a
+              >
+            </li>
+            <li><a class="site-nav__link" href="#experience">Experience</a></li>
+            <li><a class="site-nav__link" href="#gallery">Gallery</a></li>
+            <li><a class="site-nav__link" href="team.html">The Team</a></li>
+          </ul>
+          <a class="site-nav__cta btn btn--ghost-inv" href="contatti.html">
             Get in touch <span class="arr" aria-hidden="true">→</span>
           </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ============================ FOOTER ============================ -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__grid">
-
-        <div>
-          <a class="logo" href="index.html">AURA<b>.</b></a>
-          <p class="footer__tagline">Hospitality at racing speed.</p>
-        </div>
-
-        <nav aria-label="Footer">
-          <p class="footer__title">Explore</p>
-          <ul class="footer__list" role="list">
-            <li><a class="footer__link" href="#Culinary Performance">Culinary Performance</a></li>
-            <li><a class="footer__link" href="#experience">Experience</a></li>
-            <li><a class="footer__link" href="#gallery">Gallery</a></li>
-            <li><a class="footer__link" href="#vision">Vision</a></li>
-          </ul>
         </nav>
 
-        <div>
-          <p class="footer__title">Company</p>
-          <ul class="footer__list" role="list">
-            <li><a class="footer__link" href="team.html">The Team</a></li>
-            <li><a class="footer__link" href="contatti.html">Contact</a></li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div class="footer__bottom">
-        <p class="footer__legal">
-          © <span id="year">2026</span> AURA · Private Motorsport Hospitality.
-          All rights reserved.
-        </p>
-        <a class="back-top" href="#top">
-          Back to top <span class="back-top__arr" aria-hidden="true">↑</span>
+        <a class="header__cta btn btn--solid" href="contatti.html">
+          Get in touch <span class="arr" aria-hidden="true">→</span>
         </a>
       </div>
-    </div>
-  </footer>
+    </header>
 
-  <script src="js/main.js" defer></script>
-</body>
+    <main id="main" tabindex="-1">
+      <!-- ============================ HERO ============================ -->
+      <section class="hero">
+        <img
+          class="hero__img"
+          src="assets/img/hero.jpg"
+          alt="The AURA lounge at the circuit"
+          width="1179"
+          height="900"
+          fetchpriority="high"
+          decoding="async"
+        />
+
+        <div class="hero__cue" aria-hidden="true">
+          <!-- <span class="hero__cue-txt">Scroll</span> -->
+          <span class="hero__cue-line"></span>
+        </div>
+      </section>
+
+      <!-- =========================== MARQUEE =========================== -->
+      <div class="band">
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee__track">
+            <div class="marquee__group">
+              <span class="marquee__txt">Fine Dining</span
+              ><span class="marquee__sep">◆</span>
+              <span class="marquee__txt">Artisanal Mixology</span
+              ><span class="marquee__sep">◆</span>
+              <span class="marquee__txt">Paddock Lounges</span
+              ><span class="marquee__sep">◆</span>
+              <span class="marquee__txt">Italian Excellence</span
+              ><span class="marquee__sep">◆</span>
+              <span class="marquee__txt">Race Weekends</span
+              ><span class="marquee__sep">◆</span>
+            </div>
+            <div class="marquee__group">
+              <span class="marquee__txt">Fine Dining</span
+              ><span class="marquee__sep">◆</span>
+              <span class="marquee__txt">Artisanal Mixology</span
+              ><span class="marquee__sep">◆</span>
+              <span class="marquee__txt">Paddock Lounges</span
+              ><span class="marquee__sep">◆</span>
+              <span class="marquee__txt">Italian Excellence</span
+              ><span class="marquee__sep">◆</span>
+              <span class="marquee__txt">Race Weekends</span
+              ><span class="marquee__sep">◆</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================== Culinary Performance ========================== -->
+      <section class="section section--culinary" id="Culinary Performance">
+        <div class="container">
+          <div class="split split--culinary">
+            <div class="split__aside reveal">
+              <p class="eyebrow">Culinary Performance</p>
+              <h2>Where gastronomy becomes an event</h2>
+            </div>
+
+            <div class="Culinary Performance__body">
+              <p class="lead reveal reveal--d1">
+                AURA brings an exclusive gastronomic experience into the world
+                of motorsport — combining Italian culinary excellence, artisanal
+                mixology, sophisticated design and the adrenaline of racing.
+              </p>
+              <br />
+              <p class="reveal reveal--d2">
+                From intimate VIP lounges to large-scale branded hospitality
+                environments, we design every element around your audience, your
+                brand and your event.
+              </p>
+              <p class="reveal reveal--d2">
+                One team, one table: kitchen, bar and space are conceived as a
+                single piece — so that at every Grand Prix, AURA feels like
+                home. Only faster.
+              </p>
+              <p class="Culinary Performance__sign reveal reveal--d3">
+                The AURA Team
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================== PILLARS ========================== -->
+      <section class="section" id="experience">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">The Experience</p>
+            <h2>The taste of racing</h2>
+            <p class="section-head__lead">
+              One team, one table: kitchen, bar and space are conceived as a
+              single piece — so that at every Grand Prix, AURA feels like home.
+              Only faster.Choose where to begin.
+            </p>
+          </div>
+
+          <div class="pillars">
+            <article class="card reveal reveal--d1">
+              <a class="card__link" href="contatti.html">
+                <div class="card__fig figure figure--portrait">
+                  <img
+                    src="assets/img/cocktail-more.jpg"
+                    alt="Blackberry and mint signature cocktail"
+                    width="900"
+                    height="1300"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="card__cap">
+                  <span class="card__num">01</span>
+                  <h3 class="card__title">Immersive Environments</h3>
+                  <p class="card__tag">Taste the speed. Feel the atmosphere.</p>
+                </div>
+              </a>
+            </article>
+
+            <article class="card reveal reveal--d2">
+              <a class="card__link" href="contatti.html">
+                <div class="card__fig figure figure--square">
+                  <img
+                    src="assets/img/piatto-gourmet.jpg"
+                    alt="Plated gourmet course"
+                    width="1000"
+                    height="1000"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="card__cap">
+                  <span class="card__num">02</span>
+                  <h3 class="card__title">Culinary Performance</h3>
+                  <p class="card__tag">
+                    High-end, contemporary, exclusive gourmet.
+                  </p>
+                </div>
+              </a>
+            </article>
+
+            <article class="card reveal reveal--d3">
+              <a class="card__link" href="contatti.html">
+                <div class="card__fig figure figure--portrait">
+                  <img
+                    src="assets/img/cocktail-versato.jpg"
+                    alt="A signature cocktail being poured"
+                    width="900"
+                    height="1100"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <div class="card__cap">
+                  <span class="card__num">03</span>
+                  <h3 class="card__title">Artisanal Mixology</h3>
+                  <p class="card__tag">
+                    Sunrise, sunset, speedless experience.
+                  </p>
+                </div>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================== VISION =========================== -->
+      <section class="section section--dark" id="vision">
+        <div class="container">
+          <div class="split vision">
+            <div class="vision__body reveal">
+              <p class="eyebrow">The Vision</p>
+              <h2>From the paddock to the table</h2>
+              <p class="lead">
+                From bespoke pop-up lounges to private paddock experiences,
+                every detail is designed to transform a racing weekend into an
+                unforgettable sensory journey.
+              </p>
+              <p>
+                Intimate VIP lounges or large-scale branded hospitality: we
+                shape each environment around your audience, your brand and your
+                event — down to the last detail.
+              </p>
+            </div>
+
+            <div class="split__aside reveal reveal--d1">
+              <figure class="figure figure--square">
+                <img
+                  src="assets/img/cocktail-mano.jpg"
+                  alt="Signature cocktail in hand at a paddock lounge"
+                  width="900"
+                  height="1000"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            </div>
+          </div>
+
+          <figure class="quote vision__quote reveal">
+            <div class="quote__mark" aria-hidden="true">“</div>
+            <blockquote class="quote__text">
+              A sophisticated fusion of gastronomy and design, where the energy
+              of the circuit meets the elegance of Italian hospitality —
+              creating a sense of connection and trust.
+            </blockquote>
+            <figcaption class="quote__cite">The AURA Founding Team</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- =========================== GALLERY =========================== -->
+      <section class="section" id="gallery">
+        <div class="container">
+          <div class="section-head reveal">
+            <p class="eyebrow">Gallery</p>
+            <h2>Atmosphere, plated</h2>
+            <p class="section-head__lead">
+              A glimpse of what we set at the table — and around it.
+            </p>
+          </div>
+        </div>
+
+        <!-- Mobile: carosello a scatto full-bleed · Desktop: masonry.
+           Il container + margini negativi = la scorsa esce fino al bordo. -->
+        <div class="gallery container">
+          <figure class="figure figure--portrait gallery__item reveal">
+            <img
+              src="assets/img/cocktail-versato.jpg"
+              alt="A signature cocktail being poured"
+              width="900"
+              height="1100"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="figure figure--square gallery__item reveal reveal--d1">
+            <img
+              src="assets/img/piatto-gourmet.jpg"
+              alt="Plated gourmet course"
+              width="1000"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="figure figure--wide gallery__item reveal reveal--d2">
+            <img
+              src="assets/img/cocktail-mano.jpg"
+              alt="Signature cocktail in hand at a paddock lounge"
+              width="900"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure
+            class="figure figure--portrait gallery__item reveal reveal--d3"
+          >
+            <img
+              src="assets/img/cocktail-more.jpg"
+              alt="Blackberry and mint signature cocktail"
+              width="900"
+              height="1300"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============================ CTA ============================ -->
+      <section class="section section--dark">
+        <div class="container">
+          <div class="cta reveal">
+            <p class="eyebrow">By invitation</p>
+            <h2 class="cta__title">Let’s set your table at the next race</h2>
+            <p class="cta__sub">
+              Tell us about your event — we’ll design the experience around it,
+              from the first aperitivo to the last lap.
+            </p>
+            <a class="btn btn--gold" href="contatti.html">
+              Get in touch <span class="arr" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================ FOOTER ============================ -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__grid">
+          <div>
+            <a class="logo" href="index.html">AURA<b>.</b></a>
+            <p class="footer__tagline">Hospitality at racing speed.</p>
+          </div>
+
+          <nav aria-label="Footer">
+            <p class="footer__title">Explore</p>
+            <ul class="footer__list" role="list">
+              <li>
+                <a class="footer__link" href="#Culinary Performance"
+                  >Culinary Performance</a
+                >
+              </li>
+              <li><a class="footer__link" href="#experience">Experience</a></li>
+              <li><a class="footer__link" href="#gallery">Gallery</a></li>
+              <li><a class="footer__link" href="#vision">Vision</a></li>
+            </ul>
+          </nav>
+
+          <div>
+            <p class="footer__title">Company</p>
+            <ul class="footer__list" role="list">
+              <li><a class="footer__link" href="team.html">The Team</a></li>
+              <li><a class="footer__link" href="contatti.html">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__legal">
+            © <span id="year">2026</span> AURA · Private Motorsport Hospitality.
+            All rights reserved.
+          </p>
+          <a class="back-top" href="#top">
+            Back to top <span class="back-top__arr" aria-hidden="true">↑</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js" defer></script>
+  </body>
 </html>

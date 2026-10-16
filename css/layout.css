@@ -195,8 +195,8 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
 }
 
 /* --------------------------------------------------------------------------
-   3 · HERO — tutta la prima schermata. claim gigante in basso a sinistra,
-       foto dietro, velo verde per la leggibilità. 100svh = altezza reale.
+   3 · HERO — immagine a schermo intero, senza testo o CTA. 100svh = altezza
+       reale della viewport mobile.
    -------------------------------------------------------------------------- */
 .hero {
   position: relative;
@@ -213,45 +213,6 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
   height: 100%;
   object-fit: cover;
 }
-/* Velo: intenso in basso (dove sta il testo), quasi nulla in alto */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top,
-              rgba(22, 64, 55, .82),
-              rgba(22, 64, 55, .38) 45%,
-              rgba(22, 64, 55, .05));
-}
-
-.hero__content {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  gap: var(--sp-s);
-  padding-block-end: clamp(5.5rem, 14vh, 9rem);
-}
-.hero .eyebrow { color: var(--oro); }
-.hero__title {
-  font-size: var(--fs-display);
-  line-height: 1.02;
-  color: var(--crema);
-  max-width: 16ch;                               /* il claim spezza dove voglio io */
-  text-wrap: balance;
-}
-.hero__lead {
-  font-size: var(--fs-body-l);
-  line-height: 1.5;
-  color: rgba(237, 235, 230, .88);
-  max-width: 46ch;
-}
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-xs) var(--sp-s);
-  margin-block-start: var(--sp-2xs);
-}
-
 /* Invito allo scroll, in basso a destra */
 .hero__cue {
   position: absolute;
@@ -322,6 +283,7 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
    -------------------------------------------------------------------------- */
 .section { padding-block: var(--sp-xl); }
 .section--tight { padding-block: var(--sp-l); }
+.section--culinary { padding-top: var(--sp-s); }
 #crew { padding-top: var(--sp-m); }
 
 .section--dark {
@@ -365,6 +327,7 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
        per contesto con --split-cols; l'aside può restare appiccicata.
    -------------------------------------------------------------------------- */
 .split { display: grid; gap: var(--sp-m); }
+.split--culinary h2 { font-size: clamp(1.65rem, 3.5vw, 2.6rem); }
 @media (min-width: 64em) {
   .split {
     grid-template-columns: var(--split-cols, 5fr 7fr);
