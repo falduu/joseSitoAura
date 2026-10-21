@@ -90,9 +90,9 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
   inset-block: var(--header-h) 0;
   z-index: 1;
   display: grid;
-  align-content: start;
-  overflow-y: auto;
-  padding-block: var(--sp-l);
+  align-content: center;
+  overflow: hidden;
+  padding-block: var(--sp-m);
   padding-inline: var(--gutter);
   background: var(--crema);
   visibility: hidden;
@@ -104,11 +104,14 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
 }
 .site-nav.is-open { visibility: visible; opacity: 1; translate: 0 0; }
 
-.site-nav__list { display: grid; gap: var(--sp-m); }
+.site-nav__list {
+  display: grid;
+  gap: clamp(.85rem, 3vh, 1.5rem);
+}
 .site-nav__link {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.6rem, 7vw, 2.6rem);
+  font-size: clamp(1.35rem, 5.8vw, 2rem);
   line-height: 1.1;
   color: var(--marrone);
   text-decoration: none;
@@ -122,13 +125,8 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
 .site-nav__link:focus-visible { color: var(--verde); }
 .site-nav__link:focus-visible { outline-color: var(--verde); }
 
-/* Entrata a cascata SOLO all'apertura: alla chiusura niente ritardi → snap */
+/* The links appear together so the full menu is visible at once. */
 .site-nav.is-open .site-nav__link { opacity: 1; translate: 0 0; }
-.site-nav.is-open .site-nav__list li:nth-child(1) a { transition-delay: .06s; }
-.site-nav.is-open .site-nav__list li:nth-child(2) a { transition-delay: .12s; }
-.site-nav.is-open .site-nav__list li:nth-child(3) a { transition-delay: .18s; }
-.site-nav.is-open .site-nav__list li:nth-child(4) a { transition-delay: .24s; }
-.site-nav.is-open .site-nav__list li:nth-child(5) a { transition-delay: .30s; }
 
 .site-nav__cta {
   justify-self: start;
