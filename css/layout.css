@@ -64,9 +64,7 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
 .header__cta { display: none; }
 
 /* --------------------------------------------------------------------------
-   2 · NAV — un solo markup, due vite:
-       mobile  = overlay a tendina verde profondo (qui sotto)
-       desktop = riga di link (sezione 2b)
+   2 · NAV — menu a tendina su telefoni e tablet; link in riga su desktop.
    -------------------------------------------------------------------------- */
 .nav-toggle {
   margin-inline-start: auto;                     /* spinge a destra al posto della nav */
@@ -85,19 +83,23 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
 }
 
 .site-nav {
-  position: fixed;
+  position: absolute;
+  inset-block-start: 100%;
   inset-inline: 0;
-  inset-block: var(--header-h) 0;
   z-index: 1;
   display: grid;
   align-content: center;
   overflow: hidden;
-  padding-block: var(--sp-m);
+  height: clamp(22rem, 68svh, 36rem);
+  max-height: calc(100svh - var(--header-h));
+  padding-block: var(--sp-s);
   padding-inline: var(--gutter);
   background: var(--crema);
+  border-block-end: 1px solid var(--crema-bordo);
+  box-shadow: 0 1rem 2rem rgba(73, 57, 41, .12);
   visibility: hidden;
   opacity: 0;
-  translate: 0 3%;
+  translate: 0 -0.5rem;
   transition: opacity var(--t-slow) var(--ease-out),
               translate var(--t-slow) var(--ease-out),
               visibility var(--t-slow);
@@ -106,27 +108,25 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
 
 .site-nav__list {
   display: grid;
-  gap: clamp(.85rem, 3vh, 1.5rem);
+  width: min(100%, var(--container));
+  margin-inline: auto;
+  gap: 0;
 }
 .site-nav__link {
+  display: block;
+  padding-block: clamp(.6rem, 1.8vh, 1rem);
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(1.35rem, 5.8vw, 2rem);
-  line-height: 1.1;
+  font-size: clamp(1.4rem, 5vw, 2.1rem);
+  line-height: 1.2;
   color: var(--marrone);
   text-decoration: none;
-  opacity: 0;
-  translate: 0 1.25rem;
-  transition: opacity var(--t-med) var(--ease-out),
-              translate var(--t-med) var(--ease-out),
-              color var(--t-fast);
+  border-block-end: 1px solid var(--crema-bordo);
+  transition: color var(--t-fast);
 }
 .site-nav__link:hover,
 .site-nav__link:focus-visible { color: var(--verde); }
 .site-nav__link:focus-visible { outline-color: var(--verde); }
-
-/* The links appear together so the full menu is visible at once. */
-.site-nav.is-open .site-nav__link { opacity: 1; translate: 0 0; }
 
 .site-nav__cta {
   justify-self: start;
@@ -150,8 +150,8 @@ body.menu-open .header {
 .nav-toggle.is-open span:nth-child(1) { transform: translateY(.26em) rotate(45deg); }
 .nav-toggle.is-open span:nth-child(2) { transform: translateY(-.26em) rotate(-45deg); }
 
-/* --- 2b · NAV DESKTOP (≥56em): l'overlay diventa una riga quieta --------- */
-@media (min-width: 56em) {
+/* --- 2b · NAV DESKTOP (≥72em): la tendina diventa una riga quieta -------- */
+@media (min-width: 72em) {
   .nav-toggle,
   .site-nav__cta { display: none; }
   .header__cta { display: inline-flex; }
@@ -160,8 +160,12 @@ body.menu-open .header {
     position: static;
     z-index: auto;
     display: block;
+    height: auto;
+    max-height: none;
     margin-inline-start: auto;                  /* logo a sinistra, nav a destra */
     padding: 0;
+    border: 0;
+    box-shadow: none;
     background: none;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -169,16 +173,23 @@ body.menu-open .header {
     opacity: 1;
     translate: none;
   }
-  .site-nav__list { display: flex; flex-wrap: wrap; gap: clamp(1rem, 2.5vw, 2.25rem); }
+  .site-nav__list {
+    display: flex;
+    width: auto;
+    margin: 0;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 2.5vw, 2.25rem);
+  }
   .site-nav__link {
+    display: inline;
+    padding: 0;
     font-family: var(--font-body);
     font-weight: 600;
     font-size: var(--fs-small);
     letter-spacing: .18em;
     text-transform: uppercase;
     color: var(--marrone-70);
-    opacity: 1;
-    translate: none;
+    border: 0;
     transition: color var(--t-fast);
   }
   /* Sottolineatura oro che cresce da sinistra */

@@ -35,7 +35,7 @@
   const nav    = $('#site-nav');
   const toggle = $('.nav-toggle');
   if (nav && toggle) {
-    const mq = matchMedia('(min-width: 56em)');
+    const mq = matchMedia('(min-width: 72em)');
 
     const setState = (open, returnFocus) => {
       nav.classList.toggle('is-open', open);
