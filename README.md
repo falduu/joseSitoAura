@@ -6,11 +6,11 @@ Zero framework, zero build, zero dipendenze: si apre e funziona.
 ## Struttura
 
 Aura/
-├── index.html          Home — hero, manifesto, 3 pilastri, vision, galleria, CTA
+├── index.html          Home — hero, manifesto, 3 pilastri, vision, galleria
 ├── team.html           The Team — crew, valori, chiusura
-├── contatti.html       Contact — form "by invitation" + recapiti
+├── contatti.html       Contatti statici: email, telefono, WhatsApp e copia numero
 ├── robots.txt          Istruzioni per i motori di ricerca
-├── sitemap.xml         Mappa del sito (3 pagine)
+├── sitemap.xml         Mappa del sito (4 pagine)
 ├── README.md           Questo file
 ├── .gitignore
 ├── css/
@@ -19,11 +19,12 @@ Aura/
 │   └── layout.css      Struttura: header, nav, hero, sezioni, footer, pagine interne
 ├── js/
 │   ├── main.js         Header, menu, reveal, anno footer — tutte le pagine
-│   └── form.js         Validazione e invio — solo contatti.html
+│   ├── form.js         Script del vecchio form, non incluso nelle pagine
+│   └── contact.js      Copia del numero nella pagina contatti
 └── assets/
     ├── img/            Foto attuali: dal media del cliente (Wix). Da sostituire col tempo.
     └── icons/
-        └── favicon.svg
+        └── favicon.jpg
 
 ## Aprire il sito
 
@@ -34,17 +35,15 @@ Non esiste una build: i file sono il sito. Deploy su qualunque hosting statico
 ## Da personalizzare
 
 ### TODO(client) — contenuti, in questo ordine
-1. **contatti.html** — email reale (2 posti: `action` del form + recapiti),
-   telefono, sede. Il JSON-LD in `<head>` va tenuto sincronizzato.
-2. **team.html** — nomi, ruoli, bio del team vero; foto: scambiare `div.member__mono`
+1. **team.html** — nomi, ruoli, bio del team vero; foto: scambiare `div.member__mono`
    con `figure.figure--portrait` (stesso aspect-ratio, griglia invariata).
-3. **Footer** — parte legale: © e eventuale P.IVA.
-4. **Foto** — sostituirle in `assets/img` con gli stessi nomi: zero modifiche HTML.
+2. **Footer** — parte legale: © e eventuale P.IVA.
+3. **Foto** — sostituirle in `assets/img` con gli stessi nomi: zero modifiche HTML.
    Se cambiano misure: aggiornare `width`/`height` negli `img`.
 
-### TODO(live) — al lancio, un solo gesto
-Find & replace di `https://aura-hospitality.com` (dominio segnaposto) con il dominio
-reale, in: `robots.txt`, `sitemap.xml`, blocco SEO in `<head>` delle 3 pagine.
+### Dominio
+Il dominio canonico configurato è `auracatering.it`; configurare `auracatering.eu`
+come redirect verso `.it` nelle impostazioni del provider o dell'hosting.
 
 ## Regole del progetto
 

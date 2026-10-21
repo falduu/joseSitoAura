@@ -4,6 +4,5 @@
 User-agent: *
 Allow: /
 
-# TODO(live): al lancio sostituire il dominio segnaposto
-# (stesso find&replace di sitemap.xml e dei <head> delle pagine)
-Sitemap: https://aura-hospitality.com/sitemap.xml
+# auracatering.eu va reindirizzato a auracatering.it
+Sitemap: https://auracatering.it/sitemap.xml

@@ -1,0 +1,57 @@
+AURA CATERING — SEO AUDIT BRIEF
+
+Objective
+Review the existing static website and prepare a practical, evidence-based SEO
+proposal. This is an audit and recommendation task first, not authorization for
+wide-ranging site changes.
+
+Important working rules
+- Inspect the current repository and deployed-site configuration before making
+  assumptions. The working tree may contain intentional changes; preserve them.
+- Keep the site static and compatible with GitHub Pages. Do not add PHP, a
+  database, a server-side form, frameworks, dependencies, or build tooling.
+- Do not remove, replace, or restructure existing pages, navigation, team
+  content, galleries, or other sections as part of the SEO audit.
+- Do not change brand copy, design, contact details, or SEO metadata without
+  first presenting the proposed changes and receiving approval.
+- Do not invent services, locations, credentials, customer claims, company
+  details, or business facts.
+- Keep auracatering.it as the intended canonical domain. auracatering.eu is
+  intended to redirect to auracatering.it; verify the hosting/provider setup
+  rather than assuming a repository file can configure that redirect.
+- The current site is a static showcase. Do not add a contact form. Contact
+  details may be displayed as static links on the existing contacts page.
+
+Audit areas
+1. Inventory the actual HTML pages and identify the purpose of each page.
+2. Check indexability, robots.txt, sitemap.xml, canonical URLs, redirects,
+   duplicate pages, and consistency of the auracatering.it domain.
+3. Review page titles, meta descriptions, heading hierarchy, language
+   declarations, internal links, image alt text, and structured data.
+4. Review mobile usability, accessibility basics, image sizes, and performance
+   opportunities relevant to a static GitHub Pages site.
+5. Identify local SEO opportunities only after confirming the real service
+   area, business address or service-area status, and appropriate business
+   profile details.
+6. Recommend a measurement and launch checklist, including Google Search
+   Console and sitemap submission, without claiming ranking guarantees.
+
+Information that must be confirmed with the owner before tailoring keywords or
+publishing location/business claims
+- Priority catering and hospitality services.
+- Ideal customers and events.
+- Actual locations and service area.
+- Desired website languages and priority language.
+- Legal company name and business details when available.
+- Whether auracatering.it is live and whether auracatering.eu redirects to it.
+
+Required output
+- First return a concise audit with findings, evidence (file and line), severity
+  or priority, and recommended changes.
+- Separate facts verified from assumptions and unanswered owner questions.
+- Do not implement site changes during the audit. Wait for the owner to approve
+  a specific set of changes before editing files.
+
+Future content note
+Once the legal company is created, update the footer legal/company information
+only with the verified company name and details supplied by the owner.

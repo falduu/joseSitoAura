@@ -22,15 +22,14 @@
       href="https://fonts.googleapis.com/css2?family=Fahkwang:wght@500;600&display=swap"
     />
 
-    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <link rel="icon" type="image/jpeg" href="assets/icons/favicon.jpg" />
 
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/layout.css" />
     <!-- ===== SEO · social · structured data =====
-       TODO(live): find&replace "https://aura-hospitality.com" col dominio reale
-       (anche robots.txt e sitemap.xml). -->
-    <link rel="canonical" href="https://aura-hospitality.com/team.html" />
+       Dominio canonico: auracatering.it; auracatering.eu va reindirizzato. -->
+    <link rel="canonical" href="https://auracatering.it/team.html" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="AURA" />
     <meta
@@ -41,10 +40,10 @@
       property="og:description"
       content="Meet the crew behind AURA: the people who design the lounges, plate the courses, shake the cocktails and open the paddock gate — at every race, around the world."
     />
-    <meta property="og:url" content="https://aura-hospitality.com/team.html" />
+    <meta property="og:url" content="https://auracatering.it/team.html" />
     <meta
       property="og:image"
-      content="https://aura-hospitality.com/assets/img/hero.jpg"
+      content="https://auracatering.it/assets/img/hero.jpg"
     />
     <meta property="og:image:width" content="1179" />
     <meta property="og:image:height" content="900" />
@@ -55,8 +54,8 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "AURA",
-        "url": "https://aura-hospitality.com/",
-        "logo": "https://aura-hospitality.com/assets/icons/favicon.svg",
+        "url": "https://auracatering.it/",
+        "logo": "https://auracatering.it/assets/icons/favicon.jpg",
         "description": "Private motorsport hospitality: fine dining, artisanal mixology and bespoke lounges inside the world of racing."
       }
     </script>
@@ -99,14 +98,7 @@
               >
             </li>
           </ul>
-          <a class="site-nav__cta btn btn--ghost-inv" href="contatti.html">
-            Get in touch <span class="arr" aria-hidden="true">→</span>
-          </a>
         </nav>
-
-        <a class="header__cta btn btn--solid" href="contatti.html">
-          Get in touch <span class="arr" aria-hidden="true">→</span>
-        </a>
       </div>
     </header>
 
@@ -151,7 +143,15 @@
                       aria-label="Discover Jose Blanco"
                       aria-expanded="false"
                     >
-                      JB<b>.</b>
+                      <img
+                        class="member__photo member__photo--jose"
+                        src="assets/img/jose.jpg"
+                        alt=""
+                        width="1584"
+                        height="1616"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </button>
                   </div>
                   <div class="member__face member__face--back">
@@ -169,6 +169,10 @@
                   </div>
                 </div>
               </div>
+              <a class="member__profile-link btn btn--ghost" href="jose.html">
+                To find out more
+                <span class="arr" aria-hidden="true">→</span>
+              </a>
             </article>
             <article class="member reveal reveal--d3">
               <div class="member__card" data-member-card>
@@ -180,7 +184,16 @@
                       aria-label="Discover Federica Arceri"
                       aria-expanded="false"
                     >
-                      FA<b>.</b>
+                      <img
+                        class="member__photo member__photo--fede"
+                        src="assets/img/fede.jpg"
+                        alt=""
+                        width="1119"
+                        height="2048"
+                        style="object-position: 56% 75%"
+                        loading="lazy"
+                        decoding="async"
+                      />
                     </button>
                   </div>
                   <div class="member__face member__face--back">
@@ -297,14 +310,14 @@
           </div>
 
           <div class="cta reveal reveal--d1">
-            <p class="eyebrow">Join the crew</p>
-            <h2 class="cta__title">The next seat is yours</h2>
+            <p class="eyebrow">The AURA Crew</p>
+            <h2 class="cta__title">
+              Different expertise. One extraordinary vision.
+            </h2>
             <p class="cta__sub">
-              Tell us about your race — we’ll set the table around it.
+              Precision, passion and Italian hospitality come together around
+              one table.
             </p>
-            <a class="btn btn--gold" href="contatti.html">
-              Get in touch <span class="arr" aria-hidden="true">→</span>
-            </a>
           </div>
         </div>
       </section>
@@ -348,14 +361,14 @@
                   >The Team</a
                 >
               </li>
-              <li><a class="footer__link" href="contatti.html">Contact</a></li>
+              <li><a class="footer__link" href="contatti.html">Contatti</a></li>
             </ul>
           </div>
         </div>
 
         <div class="footer__bottom">
           <p class="footer__legal">
-            © <span id="year">2026</span> AURA · Private Motorsport Hospitality.
+            © <span id="year">2026</span> AURA · Private Gourmet Hospitality.
             All rights reserved.
           </p>
           <a class="back-top" href="#top">

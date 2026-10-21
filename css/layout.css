@@ -51,6 +51,8 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
 }
 
 .header__inner {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   gap: var(--sp-s);
@@ -84,15 +86,15 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
 
 .site-nav {
   position: fixed;
-  inset: 0;
-  z-index: -1;                                   /* sotto l'header: il logo resta visibile */
+  inset-inline: 0;
+  inset-block: var(--header-h) 0;
+  z-index: 1;
   display: grid;
-  align-content: center;
-  padding-block: var(--header-h) var(--sp-l) var(--sp-xl);
+  align-content: start;
+  overflow-y: auto;
+  padding-block: var(--sp-l);
   padding-inline: var(--gutter);
-  background: rgba(22, 64, 55, .98);             /* #164037: si lega alle sezioni scure */
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
+  background: var(--crema);
   visibility: hidden;
   opacity: 0;
   translate: 0 3%;
@@ -108,7 +110,7 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
   font-weight: 500;
   font-size: clamp(1.6rem, 7vw, 2.6rem);
   line-height: 1.1;
-  color: var(--crema);
+  color: var(--marrone);
   text-decoration: none;
   opacity: 0;
   translate: 0 1.25rem;
@@ -117,8 +119,8 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
               color var(--t-fast);
 }
 .site-nav__link:hover,
-.site-nav__link:focus-visible { color: var(--oro); }
-.site-nav__link:focus-visible { outline-color: var(--oro); }
+.site-nav__link:focus-visible { color: var(--verde); }
+.site-nav__link:focus-visible { outline-color: var(--verde); }
 
 /* Entrata a cascata SOLO all'apertura: alla chiusura niente ritardi → snap */
 .site-nav.is-open .site-nav__link { opacity: 1; translate: 0 0; }
@@ -128,14 +130,22 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
 .site-nav.is-open .site-nav__list li:nth-child(4) a { transition-delay: .24s; }
 .site-nav.is-open .site-nav__list li:nth-child(5) a { transition-delay: .30s; }
 
-.site-nav__cta { justify-self: start; margin-block-start: var(--sp-m); }
+.site-nav__cta {
+  justify-self: start;
+  margin-block-start: var(--sp-m);
+  border-color: var(--marrone-40);
+  color: var(--marrone);
+}
 
-/* Menu aperto: la barra si "veste" di crema su fondo verde */
+/* Menu aperto: header e pannello crema restano separati e leggibili. */
 body.menu-open { overflow: hidden; }             /* blocco lo scroll della pagina */
 body.menu-open .logo,
-body.menu-open .logo b { color: var(--crema); }
-body.menu-open .nav-toggle span { background: var(--crema); }
-body.menu-open .header { background: transparent; border-block-end-color: transparent; }
+body.menu-open .logo b { color: var(--marrone); }
+body.menu-open .nav-toggle span { background: var(--marrone); }
+body.menu-open .header {
+  background: var(--crema);
+  border-block-end-color: var(--crema-bordo);
+}
 /* ^ quest'ordine conta: vince sul .is-scrolled a parità di specificità */
 
 /* Hamburger → X */
@@ -205,6 +215,7 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
   min-height: 100vh;                             /* fallback: browser vecchi */
   min-height: 100svh;                            /* quella giusta su mobile */
   overflow: hidden;
+  background: #000;
 }
 .hero__img {
   position: absolute;
@@ -212,6 +223,9 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+@media (max-width: 39.99em) {
+  .hero__img { object-fit: contain; }
 }
 /* Invito allo scroll, in basso a destra */
 .hero__cue {
@@ -587,6 +601,53 @@ body.menu-open .header { background: transparent; border-block-end-color: transp
 .contact-block__value a:focus-visible { color: var(--verde); text-decoration-color: var(--verde); }
 .contact-note { font-style: italic; color: var(--marrone-70); font-size: var(--fs-small); }
 
+.contact-details { margin-block-start: var(--sp-l); }
+.contact-card {
+  display: grid;
+  align-content: start;
+  gap: var(--sp-s);
+  padding: var(--sp-m);
+  border: 1px solid var(--crema-bordo);
+  border-radius: var(--radius-m);
+  background: var(--crema-chiara);
+}
+.contact-card__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+}
+.contact-card__list {
+  display: grid;
+  gap: var(--sp-xs);
+  padding: 0;
+  list-style: none;
+}
+.contact-card__list a,
+.contact-card__number a {
+  color: var(--marrone);
+  text-decoration-color: var(--marrone-40);
+  text-underline-offset: .2em;
+  overflow-wrap: anywhere;
+}
+.contact-card__list a:hover,
+.contact-card__list a:focus-visible,
+.contact-card__number a:hover,
+.contact-card__number a:focus-visible { color: var(--verde); }
+.contact-card__name {
+  color: var(--marrone-70);
+  font-size: var(--fs-small);
+}
+.contact-card__number { font-size: var(--fs-body-l); }
+.contact-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-xs);
+}
+.contact-copy-status {
+  min-height: 1.5em;
+  color: var(--verde);
+  font-size: var(--fs-small);
+}
+
 .form { display: grid; gap: var(--sp-m); }
 .form__row { display: grid; gap: var(--sp-m); }
 @media (min-width: 40em) { .form__row { grid-template-columns: 1fr 1fr; } }
@@ -678,6 +739,9 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
 }
 .member__face--back { transform: rotateY(180deg); }
 .member__face--front {
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  align-content: stretch;
   padding: 0;
   transition: border-color var(--t-med) var(--ease-out);
 }
@@ -687,12 +751,26 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 1rem); }
   place-items: center;
   width: 100%;
   height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
   color: var(--marrone-40);
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 7vw, 4.5rem);
   font-weight: 500;
   letter-spacing: .06em;
   line-height: 1;
+}
+.member__photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.member__photo--fede { object-position: 56% 50%; }
+.member__profile-link {
+  justify-self: start;
+  margin-block-start: var(--sp-2xs);
 }
 .member__mono b { color: var(--oro); font-weight: 600; }
 .member__back {

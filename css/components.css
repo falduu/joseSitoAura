@@ -21,6 +21,13 @@
 .logo b { color: var(--oro); font-weight: 600; }        /* il punto finale */
 .logo--inv { color: var(--crema); }                     /* su fondo scuro */
 
+@media (max-width: 39.99em) {
+  .header .logo {
+    font-size: clamp(.8rem, 3.5vw, 1rem);
+    letter-spacing: .28em;
+  }
+}
+
 /* --------------------------------------------------------------------------
    2 · BUTTONS — min-height 3rem = 48px: tap target comodo su telefono.
        Tre anime: solid (verde), gold (oro, CTA finale), ghost (bordo).
@@ -136,7 +143,7 @@
   gap: var(--sp-s);
   justify-items: start;
 }
-.card__link { text-decoration: none; display: grid; gap: inherit; width: 100%; }
+.card__content { display: grid; gap: inherit; width: 100%; }
 
 .card__fig { overflow: hidden; border-radius: var(--radius-m); }
 .card__fig img {
@@ -146,8 +153,6 @@
   transition: transform .6s var(--ease-out);
   will-change: transform;
 }
-.card__link:hover .card__fig img,
-.card__link:focus-visible .card__fig img { transform: scale(1.045); }
 
 /* Didascalia: numero d'ordine + titolo + tagline — la voce del brand */
 .card__cap { display: grid; gap: var(--sp-3xs); }
