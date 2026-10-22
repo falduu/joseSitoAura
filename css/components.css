@@ -20,12 +20,38 @@
 }
 .logo b { color: var(--oro); font-weight: 600; }        /* il punto finale */
 .logo--inv { color: var(--crema); }                     /* su fondo scuro */
+.header .logo--wordmark {
+  width: clamp(4.5rem, 8vw, 6rem);
+  color: var(--marrone);
+  letter-spacing: 0;
+}
+.logo--wordmark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.logo__a-left,
+.logo__a-right,
+.logo__u-left,
+.logo__u-right,
+.logo__r {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: butt;
+  stroke-linejoin: round;
+}
+.logo__a-left { stroke-width: 1.8; }
+.logo__a-right { stroke-width: 3.2; }
+.logo__u-left { stroke-width: 3.2; }
+.logo__u-right { stroke-width: 1.8; }
+.logo__r { stroke-width: 3.3; }
 
 @media (max-width: 39.99em) {
   .header .logo {
     font-size: clamp(.8rem, 3.5vw, 1rem);
     letter-spacing: .28em;
   }
+  .header .logo--wordmark { width: 4.5rem; }
 }
 
 /* --------------------------------------------------------------------------

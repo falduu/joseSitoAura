@@ -49,6 +49,8 @@ html.js .reveal--fade { translate: none; }        /* variante: solo dissolvenza 
   backdrop-filter: blur(14px);
   border-block-end-color: var(--crema-bordo);
 }
+.home .header:not(.is-scrolled) .logo--wordmark { color: var(--crema); }
+body.menu-open .header .logo--wordmark { color: var(--marrone); }
 
 .header__inner {
   position: relative;
@@ -162,7 +164,7 @@ body.menu-open .header {
     display: block;
     height: auto;
     max-height: none;
-    margin-inline-start: auto;                  /* logo a sinistra, nav a destra */
+    margin-inline: 0;
     padding: 0;
     border: 0;
     box-shadow: none;
@@ -175,9 +177,10 @@ body.menu-open .header {
   }
   .site-nav__list {
     display: flex;
-    width: auto;
-    margin: 0;
+    width: min(100%, var(--container));
+    margin-inline: auto;
     flex-wrap: wrap;
+    justify-content: center;
     gap: clamp(1rem, 2.5vw, 2.25rem);
   }
   .site-nav__link {

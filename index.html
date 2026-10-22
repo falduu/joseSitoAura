@@ -11,13 +11,13 @@
     />
     <meta name="theme-color" content="#164037" />
 
-    <!-- Arma le animazioni PRIMA del primo paint (vedi note).
-       Se JS manca, html resta "no-js" e il sito è visibile di sua natura. -->
+    <!-- Enable animations before the first paint.
+       Without JavaScript, "no-js" keeps the page visible by default. -->
     <script>
       document.documentElement.classList.replace("no-js", "js");
     </script>
 
-    <!-- Font: 1 famiglia, 2 pesi. Il body usa lo stack di sistema. -->
+    <!-- One font family, two weights. The body uses the system font stack. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,8 +30,8 @@
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/layout.css" />
-    <!-- ===== SEO · social · structured data =====
-       Dominio canonico: auracatering.it; auracatering.eu va reindirizzato. -->
+    <!-- ===== SEO, social and structured data =====
+       Canonical domain: auracatering.it; auracatering.eu should redirect here. -->
     <link rel="canonical" href="https://auracatering.it/" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="AURA" />
@@ -60,13 +60,23 @@
       }
     </script>
   </head>
-  <body id="top">
+  <body id="top" class="home">
     <a class="skip-link" href="#main">Skip to content</a>
 
     <!-- ============================ HEADER ============================ -->
     <header class="header">
       <div class="header__inner container">
-        <a class="logo" href="index.html">AURA<b>.</b></a>
+        <a class="logo logo--wordmark" href="index.html" aria-label="AURA home">
+          <svg viewBox="0 0 360 62" aria-hidden="true" focusable="false">
+            <path class="logo__a-left" d="M2 59 32 3" />
+            <path class="logo__a-right" d="m32 3 30 56" />
+            <path class="logo__u-left" d="M105 3v34c0 15 10 23 27 23" />
+            <path class="logo__u-right" d="M132 60c17 0 27-8 27-23V3" />
+            <path class="logo__r" d="M204 59V3h25c16 0 25 7 25 19s-9 19-25 19h-25m27 0 33 18" />
+            <path class="logo__a-left" d="m298 59 30-56" />
+            <path class="logo__a-right" d="m328 3 30 56" />
+          </svg>
+        </a>
 
         <button
           class="nav-toggle"
@@ -88,7 +98,7 @@
           <li><a class="site-nav__link" href="#experience">Experience</a></li>
           <li><a class="site-nav__link" href="#gallery">Gallery</a></li>
           <li><a class="site-nav__link" href="team.html">The Team</a></li>
-          <li><a class="site-nav__link" href="contatti.html">Contatti</a></li>
+          <li><a class="site-nav__link" href="contatti.html">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -187,7 +197,7 @@
             <p class="section-head__lead">
               One team, one table: kitchen, bar and space are conceived as a
               single piece — so that at every Grand Prix, AURA feels like home.
-              Only faster.Choose where to begin.
+              Only faster. Choose where to begin.
             </p>
           </div>
 
@@ -236,21 +246,21 @@
 
             <article class="card reveal reveal--d3">
               <div class="card__content">
-                <div class="card__fig figure figure--portrait">
+                <div class="card__fig figure figure--square">
                   <img
-                    src="assets/img/cocktail-versato.jpg"
-                    alt="A signature cocktail being poured"
-                    width="900"
-                    height="1100"
+                    src="assets/img/taglierePesce.jpg"
+                    alt="Seafood sharing board"
+                    width="1920"
+                    height="1280"
                     loading="lazy"
                     decoding="async"
                   />
                 </div>
                 <div class="card__cap">
                   <span class="card__num">03</span>
-                  <h3 class="card__title">Artisanal Mixology</h3>
+                  <h3 class="card__title">Sharing Boards</h3>
                   <p class="card__tag">
-                    Sunrise, sunset, speedless experience.
+                    Seasonal ingredients, arranged to be shared.
                   </p>
                 </div>
               </div>
@@ -281,10 +291,10 @@
             <div class="split__aside reveal reveal--d1">
               <figure class="figure figure--square">
                 <img
-                  src="assets/img/cocktail-mano.jpg"
-                  alt="Signature cocktail in hand at a paddock lounge"
-                  width="900"
-                  height="1000"
+                  src="assets/img/tagliereBurrata.jpg"
+                  alt="Burrata sharing board"
+                  width="1920"
+                  height="1280"
                   loading="lazy"
                   decoding="async"
                 />
@@ -316,15 +326,15 @@
           </div>
         </div>
 
-        <!-- Mobile: carosello a scatto full-bleed · Desktop: masonry.
-           Il container + margini negativi = la scorsa esce fino al bordo. -->
+        <!-- Mobile: full-bleed snap carousel. Desktop: masonry.
+           The container and negative margins extend the gallery to the edge. -->
         <div class="gallery container">
-          <figure class="figure figure--portrait gallery__item reveal">
+          <figure class="figure figure--wide gallery__item reveal">
             <img
-              src="assets/img/cocktail-versato.jpg"
-              alt="A signature cocktail being poured"
-              width="900"
-              height="1100"
+              src="assets/img/tagliereBurrata.jpg"
+              alt="Burrata sharing board"
+              width="1920"
+              height="1280"
               loading="lazy"
               decoding="async"
             />
@@ -341,22 +351,50 @@
           </figure>
           <figure class="figure figure--wide gallery__item reveal reveal--d2">
             <img
-              src="assets/img/cocktail-mano.jpg"
-              alt="Signature cocktail in hand at a paddock lounge"
-              width="900"
-              height="1000"
+              src="assets/img/tagliereColazione.jpg"
+              alt="Breakfast sharing board"
+              width="1920"
+              height="1280"
               loading="lazy"
               decoding="async"
             />
           </figure>
-          <figure
-            class="figure figure--portrait gallery__item reveal reveal--d3"
-          >
+          <figure class="figure figure--portrait gallery__item reveal reveal--d3">
             <img
               src="assets/img/cocktail-more.jpg"
               alt="Blackberry and mint signature cocktail"
               width="900"
               height="1300"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="figure figure--wide gallery__item reveal">
+            <img
+              src="assets/img/taglierePesce.jpg"
+              alt="Seafood sharing board"
+              width="1920"
+              height="1280"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="figure figure--wide gallery__item reveal reveal--d1">
+            <img
+              src="assets/img/tagliereRandom.jpg"
+              alt="A selection of Italian sharing-board dishes"
+              width="1920"
+              height="1280"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+          <figure class="figure figure--wide gallery__item reveal reveal--d2">
+            <img
+              src="assets/img/cappelletti.jpg"
+              alt="Cappelletti pasta"
+              width="2048"
+              height="1156"
               loading="lazy"
               decoding="async"
             />
@@ -406,7 +444,7 @@
             <p class="footer__title">Company</p>
             <ul class="footer__list" role="list">
               <li><a class="footer__link" href="team.html">The Team</a></li>
-              <li><a class="footer__link" href="contatti.html">Contatti</a></li>
+              <li><a class="footer__link" href="contatti.html">Contact</a></li>
             </ul>
           </div>
         </div>

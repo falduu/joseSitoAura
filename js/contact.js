@@ -8,7 +8,7 @@
   copyButton.addEventListener('click', async () => {
     const phone = copyButton.dataset.copyPhone;
     if (!phone) {
-      status.textContent = 'Numero non disponibile per la copia.';
+      status.textContent = 'Phone number is unavailable to copy.';
       return;
     }
 
@@ -28,9 +28,9 @@
         if (!copied) throw new Error('Clipboard copy was rejected');
       }
 
-      status.textContent = 'Numero copiato negli appunti.';
+      status.textContent = 'Phone number copied to clipboard.';
     } catch (error) {
-      status.textContent = 'Copia non riuscita. Seleziona e copia il numero manualmente.';
+      status.textContent = 'Could not copy the number. Please try again or contact us on WhatsApp.';
       console.error('Unable to copy the contact phone number.', error);
     }
   });
