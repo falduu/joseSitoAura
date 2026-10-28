@@ -54,8 +54,15 @@ AURA CATERING — SEO ARCHITECTURE, AUDIT & LAUNCH CHECKLIST
 - Social & Robots Meta Tags: Added meta robots (index, follow,
   max-image-preview:large, max-snippet:-1, max-video-preview:-1), og:locale
   (en_US), complete Twitter Card tags, and apple-touch-icon links on all pages.
-- HTML5 Valid Anchor IDs: Standardized id="culinary-performance" (without
-  spaces) and updated all internal navigation and footer links across all pages.
+- Security Hardening (CSP & Referrer Policy): Added Content-Security-Policy
+  (with SHA-256 hash whitelisting for the initial no-js/js inline script) and
+  strict-origin-when-cross-origin referrer policy across all pages.
+- Custom 404 Error Page: Added 404.html (with meta robots="noindex, follow")
+  matching the AURA brand aesthetic for GitHub Pages custom error routing.
+- HTML5 Valid Anchor IDs & Unified Footers: Standardized
+  id="culinary-performance" (without spaces) and unified all header and footer
+  navigation links ("Culinary Performance", "Experience", "Gallery", "Vision",
+  "The Team", "Contact") and copyright years across all pages.
 - Image Intrinsic Dimensions (Zero CLS): Synced all width/height attributes and
   og:image dimensions with actual pixel dimensions:
   * hero.jpg: 1448 x 1086

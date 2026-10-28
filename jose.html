@@ -12,6 +12,11 @@
       name="robots"
       content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
     />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'sha256-K1z9k0NoRK2sHAKQ2bRmqGBRaJwUbbL6bUQazKFx9kU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.auracatering.it; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:;"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="theme-color" content="#164037" />
     <script>
       document.documentElement.classList.replace("no-js", "js");
@@ -226,11 +231,17 @@
         <div class="footer__grid">
           <div>
             <a class="logo" href="index.html">AURA<b>.</b></a>
-            <p class="footer__tagline">Private Gourmet Hospitality</p>
+            <p class="footer__tagline">Hospitality at racing speed.</p>
           </div>
+
           <nav aria-label="Footer">
             <p class="footer__title">Explore</p>
             <ul class="footer__list" role="list">
+              <li>
+                <a class="footer__link" href="index.html#culinary-performance"
+                  >Culinary Performance</a
+                >
+              </li>
               <li>
                 <a class="footer__link" href="index.html#experience"
                   >Experience</a
@@ -239,17 +250,21 @@
               <li>
                 <a class="footer__link" href="index.html#gallery">Gallery</a>
               </li>
+              <li>
+                <a class="footer__link" href="index.html#vision">Vision</a>
+              </li>
             </ul>
           </nav>
+
           <div>
-            <p class="footer__title">Contact</p>
+            <p class="footer__title">Company</p>
             <ul class="footer__list" role="list">
-              <li>
-                <a class="footer__link" href="contatti.html">Email and phone</a>
-              </li>
+              <li><a class="footer__link" href="team.html">The Team</a></li>
+              <li><a class="footer__link" href="contatti.html">Contact</a></li>
             </ul>
           </div>
         </div>
+
         <div class="footer__bottom">
           <p class="footer__legal">
             © <span id="year">2026</span> AURA · Private Gourmet Hospitality.
