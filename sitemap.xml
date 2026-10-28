@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- AURA · sitemap · auracatering.it è il dominio canonico.
-     lastmod omesso di proposito: aggiungerlo (AAAA-MM-GG) a ogni modifica reale. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://auracatering.it/</loc>
+    <loc>https://www.auracatering.it/</loc>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://auracatering.it/team.html</loc>
+    <loc>https://www.auracatering.it/team.html</loc>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://auracatering.it/jose.html</loc>
+    <loc>https://www.auracatering.it/jose.html</loc>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://auracatering.it/contatti.html</loc>
+    <loc>https://www.auracatering.it/contatti.html</loc>
+    <lastmod>2026-10-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

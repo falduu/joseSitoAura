@@ -1,8 +1,8 @@
-# AURA — Private Motorsport Hospitality
-# Istruzioni per i motori di ricerca · v1
+# AURA Catering — Private Motorsport Hospitality
+# Search Engine Crawler Directives
 
 User-agent: *
 Allow: /
 
-# auracatering.eu va reindirizzato a auracatering.it
-Sitemap: https://auracatering.it/sitemap.xml
+# Canonical domain: www.auracatering.it (auracatering.eu redirects here)
+Sitemap: https://www.auracatering.it/sitemap.xml

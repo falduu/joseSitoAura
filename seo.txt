@@ -1,57 +1,89 @@
-AURA CATERING — SEO AUDIT BRIEF
+AURA CATERING — SEO ARCHITECTURE, AUDIT & LAUNCH CHECKLIST
+===============================================================================
 
-Objective
-Review the existing static website and prepare a practical, evidence-based SEO
-proposal. This is an audit and recommendation task first, not authorization for
-wide-ranging site changes.
+1. CANONICAL DOMAIN & HOSTING ARCHITECTURE
+-------------------------------------------------------------------------------
+- Primary Canonical Domain: https://www.auracatering.it (matches CNAME)
+- Apex Domain (auracatering.it): Configured via DNS A records pointing to
+  GitHub Pages IPs (185.199.108.153, 185.199.109.153, 185.199.110.153,
+  185.199.111.153), automatically 301-redirected by GitHub Pages to
+  https://www.auracatering.it/.
+- Secondary Domain (auracatering.eu): Must be configured at the DNS/registrar
+  level with a permanent 301 redirect to https://www.auracatering.it/.
+- Crawl & Indexing Files:
+  * /robots.txt  -> Allows all user-agents, references https://www.auracatering.it/sitemap.xml
+  * /sitemap.xml -> Lists all 4 canonical URLs with ISO 8601 <lastmod> dates
 
-Important working rules
-- Inspect the current repository and deployed-site configuration before making
-  assumptions. The working tree may contain intentional changes; preserve them.
-- Keep the site static and compatible with GitHub Pages. Do not add PHP, a
-  database, a server-side form, frameworks, dependencies, or build tooling.
-- Do not remove, replace, or restructure existing pages, navigation, team
-  content, galleries, or other sections as part of the SEO audit.
-- Do not change brand copy, design, contact details, or SEO metadata without
-  first presenting the proposed changes and receiving approval.
-- Do not invent services, locations, credentials, customer claims, company
-  details, or business facts.
-- Keep auracatering.it as the intended canonical domain. auracatering.eu is
-  intended to redirect to auracatering.it; verify the hosting/provider setup
-  rather than assuming a repository file can configure that redirect.
-- The current site is a static showcase. Do not add a contact form. Contact
-  details may be displayed as static links on the existing contacts page.
+2. INVENTORY OF INDEXABLE PAGES & METADATA
+-------------------------------------------------------------------------------
+1) Homepage — https://www.auracatering.it/ (index.html)
+   - Title: AURA Catering · Private Motorsport Hospitality & Fine Dining
+   - Primary H1: Screen-reader/SEO semantic H1 in Hero ("AURA Catering — Private
+     Motorsport Hospitality, Fine Dining and Bespoke Lounges"), preserving the
+     pure visual full-bleed hero layout.
+   - Schema.org JSON-LD: @graph with Organization + FoodEstablishment, WebSite,
+     and WebPage entities.
 
-Audit areas
-1. Inventory the actual HTML pages and identify the purpose of each page.
-2. Check indexability, robots.txt, sitemap.xml, canonical URLs, redirects,
-   duplicate pages, and consistency of the auracatering.it domain.
-3. Review page titles, meta descriptions, heading hierarchy, language
-   declarations, internal links, image alt text, and structured data.
-4. Review mobile usability, accessibility basics, image sizes, and performance
-   opportunities relevant to a static GitHub Pages site.
-5. Identify local SEO opportunities only after confirming the real service
-   area, business address or service-area status, and appropriate business
-   profile details.
-6. Recommend a measurement and launch checklist, including Google Search
-   Console and sitemap submission, without claiming ranking guarantees.
+2) The Team — https://www.auracatering.it/team.html (team.html)
+   - Title: The Team · AURA Catering — Private Motorsport Hospitality
+   - Primary H1: "Different expertise. One extraordinary vision."
+   - Semantic H2: Screen-reader/SEO H2 ("Meet the AURA Crew") in #crew to
+     maintain a strict H1 -> H2 -> H3 hierarchy above member cards.
+   - Schema.org JSON-LD: @graph with Organization (including Person members:
+     Blanco José, Federica Arceri, Riccardo Falduto), AboutPage, and
+     BreadcrumbList.
 
-Information that must be confirmed with the owner before tailoring keywords or
-publishing location/business claims
-- Priority catering and hospitality services.
-- Ideal customers and events.
-- Actual locations and service area.
-- Desired website languages and priority language.
-- Legal company name and business details when available.
-- Whether auracatering.it is live and whether auracatering.eu redirects to it.
+3) Executive Chef Profile — https://www.auracatering.it/jose.html (jose.html)
+   - Title: Blanco José | Executive Chef — AURA Catering
+   - Primary H1: "Blanco José | Executive Chef"
+   - Schema.org JSON-LD: @graph with ProfilePage + Person (mainEntity, linked
+     to Organization AURA Catering) and BreadcrumbList.
 
-Required output
-- First return a concise audit with findings, evidence (file and line), severity
-  or priority, and recommended changes.
-- Separate facts verified from assumptions and unanswered owner questions.
-- Do not implement site changes during the audit. Wait for the owner to approve
-  a specific set of changes before editing files.
+4) Contact — https://www.auracatering.it/contatti.html (contatti.html)
+   - Title: Contact · AURA Catering — Private Gourmet Hospitality
+   - Primary H1: "Contact"
+   - Schema.org JSON-LD: @graph with Organization, ContactPage, and
+     BreadcrumbList including verified emails (info@auracatering.it,
+     jose@auracatering.it, riky@auracatering.it) and WhatsApp/phone contact
+     point (+39 320 417 9780, Federica Arceri).
 
-Future content note
-Once the legal company is created, update the footer legal/company information
-only with the verified company name and details supplied by the owner.
+3. TECHNICAL & PERFORMANCE OPTIMIZATIONS APPLIED
+-------------------------------------------------------------------------------
+- Canonical & Open Graph Alignment: All <link rel="canonical">, og:url,
+  og:image, twitter:image, and JSON-LD @id/url values use https://www.auracatering.it.
+- Social & Robots Meta Tags: Added meta robots (index, follow,
+  max-image-preview:large, max-snippet:-1, max-video-preview:-1), og:locale
+  (en_US), complete Twitter Card tags, and apple-touch-icon links on all pages.
+- HTML5 Valid Anchor IDs: Standardized id="culinary-performance" (without
+  spaces) and updated all internal navigation and footer links across all pages.
+- Image Intrinsic Dimensions (Zero CLS): Synced all width/height attributes and
+  og:image dimensions with actual pixel dimensions:
+  * hero.jpg: 1448 x 1086
+  * cappelletti.jpg: 2048 x 1156
+  * tagliereBurrata.jpg: 1920 x 1280
+  * riky.jpg: 1164 x 2048
+- Image Alt Text: Added descriptive alt attributes to all team portraits on
+  team.html and differentiated gallery image alt descriptions on index.html.
+- Asset Compression (Core Web Vitals / LCP):
+  * assets/img/jose.jpg optimized from 1.4 MB to 384 KB (preserving 1584x1616).
+  * assets/icons/favicon.jpg optimized from 274 KB to 5.7 KB (256x256).
+
+4. GOOGLE SEARCH CONSOLE & LAUNCH CHECKLIST
+-------------------------------------------------------------------------------
+[ ] Verify Domain Property "auracatering.it" in Google Search Console via DNS
+    TXT record (covers http/https and www/non-www).
+[ ] Submit https://www.auracatering.it/sitemap.xml in Google Search Console ->
+    Sitemaps.
+[ ] Use URL Inspection tool in Google Search Console to request indexing for:
+    1. https://www.auracatering.it/
+    2. https://www.auracatering.it/team.html
+    3. https://www.auracatering.it/jose.html
+    4. https://www.auracatering.it/contatti.html
+[ ] Verify with Rich Results Test (https://search.google.com/test/rich-results)
+    that Organization, FoodEstablishment, ProfilePage, and BreadcrumbList
+    structured data validate with 0 errors.
+[ ] Verify at the registrar/DNS panel that https://auracatering.eu redirects
+    with HTTP 301 to https://www.auracatering.it/.
+[ ] Future Legal Update: Once the legal company is incorporated, add the
+    verified company name, registered office/service area, and VAT number
+    (P.IVA) to the footer and Organization JSON-LD.
